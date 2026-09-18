@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+<link rel="dns-prefetch" href="https://connect.facebook.net">
+<link rel="preconnect" href="https://www.facebook.com">
+<title>UZTURK — Turk tili kursi</title><meta name="description" content="2-3 oy ichida turk tilida bemalol gaplashing va B2 sertifikat oling. Natijaga chiqmasangiz, pulingiz 100% qaytariladi.">
+<base href="/">
+<link rel="canonical" href="https://irodahoca.uz/tg">
+<link rel="icon" type="image/png" href="./images/favicon.png">
+<link rel="apple-touch-icon" href="./images/logo.png">
+<meta property="og:title" content="UZTURK — Turk tili kursi">
+<meta property="og:description" content="2-3 oy ichida turk tilida bemalol gaplashing va B2 sertifikat oling.">
+<meta property="og:image" content="./images/hero.avif">
+<meta property="og:type" content="website">
+<link rel="preload" as="image" href="./images/hero-mobile.avif" fetchpriority="high" media="(max-width:600px)">
+<link rel="preload" as="image" href="./images/hero.avif" fetchpriority="high" media="(min-width:601px)">
+<link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-800.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-700.woff2" crossorigin>
+<!-- Meta Pixel Code (fbevents.js fetch deferred to idle/interaction so it can't block the LCP paint) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];
+n.__start=function(){t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s);n.__start=null};
+}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('set', 'autoConfig', false, '2613961429062390');
+fbq('init', '2613961429062390');
+fbq('track', 'PageView');
+(function(){
+  function start(){ if(fbq.__start) fbq.__start(); }
+  addEventListener('load', function(){ setTimeout(start, 4500); });
+  ['scroll','touchstart','mousemove'].forEach(function(ev){ addEventListener(ev, start, {once:true, passive:true}); });
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2613961429062390&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<style>
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-400.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-500.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-600.woff2) format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-700.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-800.woff2) format('woff2');font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:'Baloo 2';src:url(./fonts/baloo2-bold.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+
+:root{
+  --red:#FF4135;
+  --red-text:#CC342A;
+  --green:#1FA22F;
+  --green-text:#188125;
+  --tg:#2AABEE;
+  --tg-dark:#229ED9;
+  --navy:#141414;
+  --cream:#FFF8F0;
+  --wrap:1180px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Manrope',Arial,sans-serif;
+  color:var(--navy);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  padding-top:var(--header-h,64px);
+}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{margin:0}
+ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 18px}
+
+/* ---- reveal-on-scroll ---- */
+.reveal{
+  opacity:0;transform:translateY(26px) scale(.985);
+  transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);
+  will-change:opacity,transform;
+}
+.reveal.is-visible{opacity:1;transform:translateY(0) scale(1)}
+.why-card.reveal.is-visible{transition-delay:calc(var(--i,0) * .08s)}
+.outcome-card.reveal.is-visible{transition-delay:calc(var(--i,0) * .07s)}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ---- CTA button (shared) ---- */
+.cta{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:17px 28px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--tg) 0%,var(--tg-dark) 100%);
+  color:#fff;
+  font-weight:800;
+  font-size:17px;
+  overflow:hidden;
+  box-shadow:0 14px 28px -8px rgb(34 158 217 / .55);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+  isolation:isolate;
+}
+.cta:active{transform:scale(.96)}
+.cta::after{
+  content:'';
+  position:absolute;top:-40%;left:-30%;
+  width:30%;height:180%;
+  background:linear-gradient(90deg,transparent,rgb(255 255 255 / .55),transparent);
+  transform:translateX(0) skewX(-18deg);
+  animation:sheen 3.2s linear .8s infinite;
+  z-index:1;
+}
+@keyframes sheen{
+  0%{transform:translateX(0) skewX(-18deg)}
+  55%,100%{transform:translateX(500%) skewX(-18deg)}
+}
+.cta svg,.cta span.txt{position:relative;z-index:2}
+.cta--block{display:flex;width:100%}
+.cta--ghost{
+  background:#fff;
+  color:var(--tg-dark);
+  box-shadow:0 10px 22px -10px rgb(20 20 20 / .18);
+  animation:none;
+}
+
+/* ---- top bar ---- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;width:100%;z-index:50;
+  background:rgb(255 248 240 / .97);
+  border-bottom:1px solid rgb(20 20 20 / .06);
+}
+.topbar__inner{
+  max-width:var(--wrap);margin:0 auto;padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.topbar__logo{font-weight:800;font-size:clamp(18px,3vw,22px);text-transform:uppercase;color:var(--red-text)}
+.topbar__logo span{color:var(--green-text)}
+.topbar .cta{padding:12px 16px;font-size:13px;border-radius:10px;min-height:44px}
+.topbar .cta svg{width:15px;height:15px}
+
+/* ---- hero ---- */
+.hero{
+  position:relative;
+  padding:32px 0 0;
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgb(42 171 238 / .16), transparent 60%),
+    radial-gradient(80% 45% at 100% 100%, rgb(255 65 53 / .10), transparent 60%),
+    linear-gradient(160deg,#FFF6F5 0%,#F3FBF4 100%);
+  overflow:hidden;
+}
+.hero__inner{
+  max-width:var(--wrap);margin:0 auto;padding:0 18px 40px;
+  display:flex;align-items:center;gap:40px;
+}
+.hero__copy{flex:1 1 0;min-width:0;max-width:600px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--red-text);background:#fff;border-radius:99px;padding:7px 14px 7px 10px;
+  box-shadow:0 6px 16px -6px rgb(20 20 20 / .15);
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:99px;background:#22C55E;position:relative;flex:none}
+.eyebrow .dot::before{content:'';position:absolute;inset:0;border-radius:inherit;background:#22C55E;opacity:.7;animation:ping 1.5s cubic-bezier(0,0,.2,1) infinite}
+@keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
+.hero h1{
+  margin-top:16px;
+  font-weight:800;font-size:clamp(28px,4.6vw,46px);line-height:1.12;
+  text-transform:uppercase;letter-spacing:-.01em;
+}
+.hero h1 .accent{color:var(--red)}
+.hero .sub{
+  margin-top:10px;color:var(--green);font-weight:700;font-size:clamp(15px,2vw,21px);
+}
+.hero .cta{margin-top:22px}
+.hero .cta svg{width:19px;height:19px}
+.hero .note{
+  margin-top:18px;padding-left:12px;border-left:3px solid var(--red);
+  font-size:13.5px;line-height:1.55;color:#4b4b4b;max-width:46ch;
+}
+.hero .note b{color:var(--navy)}
+.hero__support{
+  margin-top:16px;display:inline-block;font-weight:700;font-size:14px;line-height:1.5;
+  background:#fff;border-radius:12px;padding:12px 16px;
+  box-shadow:0 8px 20px -8px rgb(20 20 20 / .12);border-left:4px solid var(--green);
+}
+.hero__support b{color:var(--red-text)}
+
+.hero__media{
+  position:relative;flex:0 0 auto;width:min(42vw,360px);
+}
+.hero__media img{position:relative;z-index:2;width:100%;border-radius:18px}
+.hero__badges{position:absolute;inset:0;z-index:3;pointer-events:none}
+.chip{
+  position:absolute;display:inline-flex;align-items:center;gap:8px;
+  padding:8px 13px 8px 8px;background:#fff;border-radius:12px;
+  box-shadow:0 10px 24px -8px rgb(20 20 20 / .22);
+  font-weight:700;font-size:clamp(10.5px,1.4vw,13px);white-space:nowrap;
+}
+.chip-ico{
+  width:24px;height:24px;border-radius:7px;background:#FFE5E3;
+  display:inline-flex;align-items:center;justify-content:center;flex:none;
+}
+.chip-ico svg{width:13px;height:13px}
+.chip--exp{top:18%;left:-8%}
+.chip--cert{top:52%;right:-14%}
+.chip--students{bottom:4%;left:-12%}
+@media (max-width:900px){
+  .hero__inner{flex-direction:column;text-align:center;gap:28px}
+  .hero__copy{max-width:100%}
+  .hero .note{margin-left:auto;margin-right:auto;text-align:left}
+  .hero__media{width:min(72vw,320px)}
+  .chip--exp{left:-4%}
+  .chip--cert{right:-4%}
+  .chip--students{left:-2%;bottom:8%}
+}
+
+/* ---- promo ---- */
+.promo{
+  position:relative;overflow:hidden;
+  padding:18px 0;text-align:center;
+  background:linear-gradient(90deg,var(--red),#ff6a55,var(--red));
+  box-shadow:0 10px 30px -10px rgba(255,65,53,.55),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.promo__inner{
+  position:relative;z-index:1;
+  display:inline-flex;align-items:center;gap:12px;
+  color:#fff;
+}
+.promo__icon{
+  display:inline-flex;align-items:center;justify-content:center;flex:none;
+  width:30px;height:30px;border-radius:50%;font-size:16px;
+  background:rgba(255,255,255,.24);
+  box-shadow:0 0 0 4px rgba(255,255,255,.12);
+  animation:promoIconPop 2s ease-in-out infinite;
+}
+@keyframes promoIconPop{
+  0%,100%{transform:scale(1) rotate(0deg)}
+  25%{transform:scale(1.2) rotate(-10deg)}
+  50%{transform:scale(1) rotate(0deg)}
+  75%{transform:scale(1.2) rotate(10deg)}
+}
+.promo__text{
+  font-family:'Baloo 2','Manrope',Arial,sans-serif;
+  font-weight:700;letter-spacing:.3px;
+  font-size:clamp(14px,2.2vw,20px);
+  text-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+.promo__word{display:inline-block;animation:promoWave 2.6s ease-in-out infinite}
+@keyframes promoWave{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  15%{transform:translateY(-7px) rotate(-3deg)}
+  30%{transform:translateY(0) rotate(0deg)}
+}
+@media (max-width:560px){
+  .promo__inner{gap:8px}
+  .promo__icon{width:24px;height:24px;font-size:13px}
+}
+
+/* ---- offers (3D scrolling marquee) ---- */
+.offers{background:#fff;padding-bottom:clamp(30px,5vw,56px)}
+.offers-marquee{
+  overflow:hidden;padding:14px 0 26px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.offers-track{
+  display:flex;gap:22px;width:max-content;
+  perspective:1000px;
+  animation:offersScroll 26s linear infinite;
+}
+.offers-marquee:hover .offers-track{animation-play-state:paused}
+@keyframes offersScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.offer-card{
+  position:relative;flex:0 0 auto;width:220px;min-height:150px;
+  border-radius:22px;padding:22px 20px;color:#fff;
+  display:flex;flex-direction:column;gap:14px;justify-content:flex-end;
+  transform-style:preserve-3d;
+  box-shadow:0 20px 34px -14px rgb(20 20 20 / .38);
+  animation:offerFloat 4.6s ease-in-out infinite;
+}
+.offer-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(150deg,rgba(255,255,255,.4),transparent 55%);
+  mix-blend-mode:overlay;pointer-events:none;
+}
+.offer-card::after{
+  content:'';position:absolute;left:10%;right:10%;bottom:-10px;height:18px;
+  background:radial-gradient(closest-side,rgba(20,20,20,.28),transparent);
+  border-radius:50%;z-index:-1;filter:blur(2px);
+}
+.offer-card__icon{font-size:32px;filter:drop-shadow(0 8px 10px rgb(0 0 0 / .25))}
+.offer-card__title{font-weight:800;font-size:16px;line-height:1.3}
+.offer-card:nth-child(4n+1){background:linear-gradient(155deg,#FF4135,#ff8a75);animation-delay:0s}
+.offer-card:nth-child(4n+2){background:linear-gradient(155deg,var(--tg),#8fe0ff);animation-delay:-1.1s}
+.offer-card:nth-child(4n+3){background:linear-gradient(155deg,#7c3aed,#c4b5fd);animation-delay:-2.2s}
+.offer-card:nth-child(4n+4){background:linear-gradient(155deg,var(--green),#7be08a);animation-delay:-3.3s}
+@keyframes offerFloat{
+  0%,100%{transform:translateY(0) rotateY(0deg) rotateX(0deg)}
+  25%{transform:translateY(-9px) rotateY(8deg) rotateX(3deg)}
+  50%{transform:translateY(0) rotateY(0deg) rotateX(0deg)}
+  75%{transform:translateY(-9px) rotateY(-8deg) rotateX(-3deg)}
+}
+@media (max-width:560px){
+  .offer-card{width:180px;min-height:132px;padding:18px 16px}
+  .offer-card__icon{font-size:28px}
+  .offer-card__title{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .offers-track{animation:none}
+  .offer-card{animation:none}
+}
+
+/* ---- section shell ---- */
+section.block{padding:clamp(44px,7vw,88px) 0}
+.block__head{text-align:center;max-width:640px;margin:0 auto clamp(26px,4vw,44px)}
+.block__title{
+  font-weight:800;font-size:clamp(24px,3.6vw,38px);line-height:1.18;
+  text-transform:uppercase;
+}
+.block__title .accent{color:var(--red)}
+.block__foot{display:flex;justify-content:center;margin-top:clamp(28px,4vw,40px)}
+
+/* ---- why ---- */
+.why{background:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.why-card{
+  position:relative;overflow:hidden;background:#F5F5F5;border-radius:20px;
+  padding:26px 24px 0;min-height:280px;display:flex;flex-direction:column;
+}
+.why-card--wide{grid-column:span 2}
+.why-card h3{font-weight:700;font-size:clamp(15px,1.8vw,20px);line-height:1.3;margin-bottom:16px;max-width:70%}
+.why-card ul{display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-bottom:20px;position:relative;z-index:2;max-width:70%}
+.why-card li{position:relative;padding-left:16px;font-size:14px;line-height:1.35;color:#313131}
+.why-card li::before{content:'';position:absolute;left:2px;top:7px;width:5px;height:5px;border-radius:99px;background:var(--navy)}
+.why-card b{font-weight:700}
+.why-card__cols{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:auto;padding-bottom:20px;max-width:80%}
+.why-card__cols ul{margin:0}
+.why-card img.deco{position:absolute;right:-10px;bottom:0;max-width:52%;pointer-events:none}
+.why-card--wide img.deco{max-width:38%;right:20px}
+@media (max-width:760px){
+  .why-grid{grid-template-columns:1fr}
+  .why-card--wide{grid-column:auto}
+  .why-card h3,.why-card ul,.why-card__cols{max-width:100%}
+  .why-card img.deco{opacity:.9;max-width:44%}
+}
+
+/* ---- outcomes ---- */
+.outcomes{background:#fff}
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.outcome-card{
+  background:#F5F5F5;border-radius:18px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.outcome-card img{width:100%;aspect-ratio:510/319;object-fit:cover}
+.outcome-card p{padding:16px 18px 20px;font-size:14px;line-height:1.4;font-weight:600}
+.outcome-card p strong{color:var(--red-text)}
+@media (max-width:900px){.outcomes-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.outcomes-grid{grid-template-columns:1fr}}
+
+/* ---- faq ---- */
+.faq{background:#F5F5F5}
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border-radius:14px;padding:4px 20px;box-shadow:0 6px 18px -10px rgb(20 20 20 / .12)}
+.faq-item summary{
+  list-style:none;cursor:pointer;padding:16px 0;font-weight:700;font-size:15.5px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{
+  content:'+';flex:none;font-size:22px;font-weight:400;color:var(--tg-dark);
+  transition:transform .25s ease;
+}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{margin:0 0 18px;color:#4b4b4b;font-size:14px;line-height:1.55}
+
+/* ---- final cta ---- */
+.final{
+  position:relative;padding:clamp(52px,8vw,96px) 0 clamp(90px,10vw,110px);
+  background:linear-gradient(160deg,#101827 0%,#0b1220 100%);
+  color:#fff;text-align:center;overflow:hidden;
+}
+.final::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(60% 60% at 50% 0%, rgb(42 171 238 / .28), transparent 65%);
+  pointer-events:none;
+}
+.final__inner{position:relative;max-width:620px;margin:0 auto;padding:0 18px}
+.final h2{font-weight:800;font-size:clamp(24px,4vw,38px);text-transform:uppercase;line-height:1.2}
+.final p{margin-top:12px;color:rgb(255 255 255 / .75);font-size:15px;line-height:1.5}
+.final .cta{margin-top:26px}
+.final .copy{margin-top:34px;font-size:11.5px;color:rgb(255 255 255 / .55);letter-spacing:.03em}
+
+/* ---- sticky bottom bar (mobile) ---- */
+.stickybar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:#fff;
+  border-top:1px solid rgb(20 20 20 / .08);
+  box-shadow:0 -8px 20px -6px rgb(20 20 20 / .12);
+  display:none;
+}
+.stickybar .cta{width:100%}
+@media (max-width:760px){
+  .stickybar{display:block}
+  .final{padding-bottom:clamp(70px,10vw,90px)}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar__logo">Uz<span>turk</span></div>
+    <a class="cta" href="https://t.me/m/Z9sl2KPUZjdi">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+      <span class="txt">Telegramdan yozish</span>
+    </a>
+  </div>
+</div>
+<script>(function(){var h=document.querySelector('.topbar');function set(){if(h)document.documentElement.style.setProperty('--header-h',h.offsetHeight+'px')}set();window.addEventListener('resize',set);window.addEventListener('load',set)})()</script>
+
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__copy reveal">
+      <span class="eyebrow"><span class="dot"></span>Onlayn turk tili kursi</span>
+      <h1>Atigi <span class="accent">40 darsda</span> B2 sertifikatini oling!</h1>
+      <p class="sub">Sertifikat ololmasangiz, pulingiz 100% qaytariladi</p>
+      <a class="cta" href="https://t.me/m/Z9sl2KPUZjdi">
+        <svg aria-hidden="true" focusable="false" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+        <span class="txt">Telegramdan yozish</span>
+      </a>
+      <p class="note">Turk tili sertifikati endilikda magistratura va doktoranturaga kirishda <b>til sertifikati sifatida</b> qabul qilinadi hamda bakalavr <b>chet tili blokida maksimal ball</b> beradi</p>
+      <p class="hero__support">Sizni <b>haftada 7 kun</b>, <b>3 ta tajribali ustoz</b> bilan o'qitib <b>sertifikatli</b> qilamiz</p>
+    </div>
+    <div class="hero__media reveal">
+      <picture>
+        <source media="(max-width:600px)" srcset="./images/hero-mobile.avif" type="image/avif">
+        <img src="./images/hero.avif" alt="Iroda Nasriddinova — UZTURK kurs muallifi" fetchpriority="high" width="813" height="929">
+      </picture>
+      <div class="hero__badges">
+        <span class="chip chip--exp">
+          <span class="chip-ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 22 22" fill="#FF4135"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.39145 1.46368C7.16323 1.92179 6.86041 2.58376 6.65869 3.25274C4.8924 3.35319 3.61331 3.50809 2.72023 3.65522C1.34174 3.8823 0.416463 5.00411 0.286204 6.32899C0.185662 7.35163 0.0758503 8.80435 0.0263672 10.6039C0.254698 10.6779 0.550248 10.7728 0.897901 10.8826C1.75494 11.1532 2.92683 11.5138 4.18782 11.8741C5.45009 12.2347 6.7947 12.5931 7.9989 12.8607C9.2204 13.1321 10.2401 13.2967 10.8787 13.2967C11.5172 13.2967 12.5369 13.1321 13.7584 12.8607C14.9626 12.5931 16.3073 12.2347 17.5695 11.8741C18.8305 11.5138 20.0024 11.1532 20.8595 10.8826C21.2071 10.7728 21.5026 10.6779 21.731 10.6039C21.6815 8.80435 21.5717 7.35163 21.4711 6.32899C21.3409 5.00411 20.4156 3.8823 19.0371 3.65522C18.144 3.50809 16.8649 3.35319 15.0987 3.25274C14.8969 2.58376 14.5941 1.92179 14.3659 1.46368C14.0128 0.754876 13.34 0.220353 12.503 0.105861C12.0873 0.0489947 11.5379 0 10.8787 0C10.2194 0 9.67003 0.0489947 9.25435 0.105861C8.41738 0.220353 7.74457 0.754876 7.39145 1.46368ZM10.8787 1.93407C10.315 1.93407 9.85352 1.97597 9.51646 2.02208C9.36483 2.04282 9.21446 2.14172 9.12264 2.32605C8.99678 2.57867 8.8612 2.87021 8.74003 3.16883C9.40129 3.15214 10.1132 3.14286 10.8787 3.14286C11.6442 3.14286 12.3561 3.15214 13.0173 3.16883C12.8961 2.87021 12.7606 2.57867 12.6347 2.32605C12.5429 2.14172 12.3925 2.04282 12.2409 2.02208C11.9038 1.97597 11.4423 1.93407 10.8787 1.93407Z"/></svg></span>
+          6 yillik tajriba
+        </span>
+        <span class="chip chip--cert">
+          <span class="chip-ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 20 20" fill="#FF4135"><path d="M8.525 12.275L6.075 9.825C5.925 9.675 5.74165 9.6 5.525 9.6C5.30835 9.6 5.11665 9.68335 4.95 9.85C4.8 10 4.725 10.1833 4.725 10.4C4.725 10.6166 4.8 10.8 4.95 10.95L8 14.025C8.15 14.175 8.325 14.25 8.525 14.25C8.725 14.25 8.9 14.175 9.05 14.025L15.025 8.05C15.1916 7.88335 15.275 7.69165 15.275 7.475C15.275 7.25835 15.1916 7.06665 15.025 6.9C14.8583 6.75 14.6625 6.67915 14.4375 6.6875C14.2125 6.69585 14.025 6.775 13.875 6.925L8.525 12.275ZM10 20C8.63335 20 7.34165 19.7375 6.125 19.2125C4.90835 18.6875 3.84585 17.9708 2.9375 17.0625C2.02917 16.1542 1.3125 15.0917 0.7875 13.875C0.2625 12.6583 0 11.3666 0 10C0 8.61665 0.2625 7.31665 0.7875 6.1C1.3125 4.88335 2.02917 3.825 2.9375 2.925C3.84585 2.025 4.90835 1.3125 6.125 0.7875C7.34165 0.2625 8.63335 0 10 0C11.3834 0 12.6833 0.2625 13.9 0.7875C15.1166 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88335 19.2125 6.1C19.7375 7.31665 20 8.61665 20 10C20 11.3666 19.7375 12.6583 19.2125 13.875C18.6875 15.0917 17.975 16.1542 17.075 17.0625C16.175 17.9708 15.1166 18.6875 13.9 19.2125C12.6833 19.7375 11.3834 20 10 20Z"/></svg></span>
+          C1 sertifikati sohibasi
+        </span>
+        <span class="chip chip--students">
+          <span class="chip-ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 28 28" fill="#FF4135"><path d="M13.9993 14C16.1844 14 18.1652 14.7229 19.6164 15.7348C20.9971 16.6977 22.166 18.1278 22.166 19.6666C22.166 20.5117 21.806 21.2113 21.2379 21.7324C20.7035 22.2228 20.0057 22.5407 19.287 22.7582C17.8505 23.193 15.9597 23.3333 13.9993 23.3333C12.039 23.3333 10.1482 23.193 8.71165 22.7582C7.99299 22.5407 7.29516 22.2228 6.76072 21.7324C6.19273 21.2113 5.83268 20.5117 5.83268 19.6666C5.83268 18.1278 7.00158 16.6977 8.38226 15.7348C9.83347 14.7229 11.8143 14 13.9993 14ZM22.166 15.1667C23.3846 15.1667 24.4904 15.5686 25.3082 16.139C26.0556 16.6601 26.8327 17.5276 26.8327 18.5834C26.8327 19.1868 26.5705 19.6874 26.1797 20.046C25.8223 20.3738 25.3808 20.5658 24.9788 20.6874C24.4304 20.8533 23.7829 20.9384 23.1109 20.9757C23.2536 20.5735 23.3327 20.1356 23.3327 19.6666C23.3327 17.8753 22.2138 16.3548 20.9619 15.2985C21.3454 15.2137 21.749 15.1667 22.166 15.1667ZM5.83268 15.1667C6.24959 15.1667 6.65332 15.2137 7.03681 15.2985C5.78484 16.3548 4.66602 17.8753 4.66602 19.6666C4.66602 20.1356 4.74515 20.5735 4.88776 20.9757C4.21579 20.9384 3.56828 20.8533 3.01986 20.6874C2.61787 20.5658 2.17634 20.3738 1.81901 20.046C1.42813 19.6874 1.16602 19.1868 1.16602 18.5834C1.16602 17.5276 1.94316 16.6601 2.69046 16.139C3.50831 15.5686 4.61411 15.1667 5.83268 15.1667ZM21.5827 8.16667C23.1935 8.16667 24.4993 9.47251 24.4993 11.0833C24.4993 12.6941 23.1935 14 21.5827 14C19.9719 14 18.666 12.6941 18.666 11.0833C18.666 9.47251 19.9719 8.16667 21.5827 8.16667ZM6.41602 8.16667C8.02684 8.16667 9.33268 9.47251 9.33268 11.0833C9.33268 12.6941 8.02684 14 6.41602 14C4.80519 14 3.49935 12.6941 3.49935 11.0833C3.49935 9.47251 4.80519 8.16667 6.41602 8.16667ZM13.9993 3.5C16.5766 3.5 18.666 5.58934 18.666 8.16667C18.666 10.744 16.5766 12.8333 13.9993 12.8333C11.422 12.8333 9.33268 10.744 9.33268 8.16667C9.33268 5.58934 11.422 3.5 13.9993 3.5Z"/></svg></span>
+          1000+ o'quvchilar
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="promo"><div class="promo__inner"><span class="promo__icon">🔥</span><span class="promo__text"><span class="promo__word" style="animation-delay:0.00s">Turk</span> <span class="promo__word" style="animation-delay:0.08s">tilidan</span> <span class="promo__word" style="animation-delay:0.16s">sertifikatli</span> <span class="promo__word" style="animation-delay:0.24s">qilmaguncha</span> <span class="promo__word" style="animation-delay:0.32s">sizni</span> <span class="promo__word" style="animation-delay:0.40s">tinch</span> <span class="promo__word" style="animation-delay:0.48s">qo'ymaymiz</span> <span class="promo__word" style="animation-delay:0.56s">😉</span></span></div></div>
+
+<section class="block offers" id="offers">
+  <div class="offers-marquee">
+    <div class="offers-track">
+      <div class="offer-card"><span class="offer-card__icon">📅</span><span class="offer-card__title">Haftada 7 kun, 3 ta tajribali ustoz</span></div>
+      <div class="offer-card"><span class="offer-card__icon">🛡️🤖</span><span class="offer-card__title">Nazoratchi + Yordamchi AI</span></div>
+      <div class="offer-card"><span class="offer-card__icon">🎮</span><span class="offer-card__title">Gameifikatsiya tizimi yaxshilangan</span></div>
+      <div class="offer-card"><span class="offer-card__icon">💼</span><span class="offer-card__title">ERP tizimi ishga tushirilgan</span></div>
+      <div class="offer-card" aria-hidden="true"><span class="offer-card__icon">📅</span><span class="offer-card__title">Haftada 7 kun, 3 ta tajribali ustoz</span></div>
+      <div class="offer-card" aria-hidden="true"><span class="offer-card__icon">🛡️🤖</span><span class="offer-card__title">Nazoratchi + Yordamchi AI</span></div>
+      <div class="offer-card" aria-hidden="true"><span class="offer-card__icon">🎮</span><span class="offer-card__title">Gameifikatsiya tizimi yaxshilangan</span></div>
+      <div class="offer-card" aria-hidden="true"><span class="offer-card__icon">💼</span><span class="offer-card__title">ERP tizimi ishga tushirilgan</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block why" id="why">
+  <div class="wrap">
+    <div class="block__head reveal">
+      <h2 class="block__title">Bu kurs <span class="accent">kimlar uchun?</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal" style="--i:0">
+        <h3>Sertifikat olmoqchi bo'lganlar uchun:</h3>
+        <ul>
+          <li><b>Magistratura</b> va <b>doktoranturaga</b> kirmoqchi bo'lganlar</li>
+          <li>Bakalavr chet tili blokidan <b>maksimal ball</b> olmoqchilar</li>
+          <li><b>Turk tili ustoz</b> bo'lib ishlashni xohlaganlar</li>
+        </ul>
+        <img class="deco" src="./images/why/sertificate.avif" alt="sertifikat" loading="lazy" decoding="async">
+      </div>
+      <div class="why-card reveal" style="--i:1">
+        <h3>Gaplashish uchun o'rganmoqchi bo'lganlar:</h3>
+        <ul>
+          <li>Turkiyada <b>o'qimoqchi</b> bo'lganlar</li>
+          <li>Turkiyaga <b>sayohat qilmoqchi</b> bo'lganlar</li>
+          <li>Turk tiliga <b>qiziquvchilar</b></li>
+        </ul>
+        <img class="deco" src="./images/why/flag.avif" alt="bayroq" loading="lazy" decoding="async">
+      </div>
+      <div class="why-card why-card--wide reveal" style="--i:2">
+        <h3>Bu kursni hammaga mos qilib ishlab chiqdik:</h3>
+        <div class="why-card__cols">
+          <ul>
+            <li>Studentlar / o'qiydiganlar</li>
+            <li>Yosh bolali onalar</li>
+            <li>Yoshi kattalar</li>
+          </ul>
+          <ul>
+            <li>Ishlaydigan, ishi ko'p bo'lganlar</li>
+            <li>Dangasalar (tizim + nazorat bilan o'qiydi)</li>
+            <li>Maktab o'quvchilari</li>
+          </ul>
+        </div>
+        <img class="deco" src="./images/why/web.avif" alt="laptop" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <div class="block__foot reveal">
+      <a class="cta" href="https://t.me/m/Z9sl2KPUZjdi">
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+        <span class="txt">Telegramdan yozish</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block outcomes" id="outcomes">
+  <div class="wrap">
+    <div class="block__head reveal">
+      <h2 class="block__title">Kursda o'qib <span class="accent">qanday natijaga erishasiz?</span></h2>
+    </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal" style="--i:0"><img src="./images/natija/1.avif" alt="" loading="lazy" decoding="async"><p>Nafaqat Turk tilini o'rganasiz va <strong>qanday ilm olish</strong> kerakligini o'rganasiz</p></div>
+      <div class="outcome-card reveal" style="--i:1"><img src="./images/natija/3.avif" alt="" loading="lazy" decoding="async"><p>Turk tilidagi asosiy <strong>A1, A2, B1, B2</strong> darajalarning barchasini tugatasiz</p></div>
+      <div class="outcome-card reveal" style="--i:2"><img src="./images/natija/5.avif" alt="" loading="lazy" decoding="async"><p>Kursni Turk tilida <strong>bemalol gaplasha oladigan</strong> darajagacha chiqasiz</p></div>
+      <div class="outcome-card reveal" style="--i:0"><img src="./images/natija/2.avif" alt="" loading="lazy" decoding="async"><p>CEFR va TYS imtihonlarida <strong>kamida B2 sertifikatga</strong> olishga tayyor bo'lasiz</p></div>
+      <div class="outcome-card reveal" style="--i:1"><img src="./images/natija/4.avif" alt="" loading="lazy" decoding="async"><p>Konuşma, dinleme, yazma, okuma bosqichlarning <strong>har birida kuchli</strong> bo'lasiz</p></div>
+      <div class="outcome-card reveal" style="--i:2"><img src="./images/natija/6.avif" alt="" loading="lazy" decoding="async"><p><strong>CEFR va TYS</strong> imtihonga o'zingizga ishonch bilan kirasiz</p></div>
+    </div>
+    <div class="block__foot reveal">
+      <a class="cta" href="https://t.me/m/Z9sl2KPUZjdi">
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+        <span class="txt">Telegramdan yozish</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block faq" id="faq">
+  <div class="wrap">
+    <div class="block__head reveal">
+      <h2 class="block__title">Ko'p beriladigan <span class="accent">savollar</span></h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary>Kurs necha oy davom etadi?</summary>
+        <p>2–3 oy ichida turk tilida bemalol gaplasha oladigan darajaga chiqasiz va B2 darajasigacha yetib borasiz.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Onlaynmi yoki oflaynmi o'qiymiz?</summary>
+        <p>Ikkalasi ham mavjud — sizga qulay formatni Telegramda yozganingizda birga tanlab olasiz.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Kim dars beradi?</summary>
+        <p>Haftada 7 kun, 3 ta tajribali ustoz siz bilan shug'ullanadi.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Natijaga chiqmasam-chi?</summary>
+        <p>Natijaga chiqmasangiz, pulingiz 100% qaytariladi.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Sertifikat qayerda kerak bo'ladi?</summary>
+        <p>Magistratura va doktoranturaga kirishda til sertifikati sifatida qabul qilinadi hamda bakalavr chet tili blokida maksimal ball beradi.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Qanday boshlayman?</summary>
+        <p>Pastdagi tugma orqali Telegramda yozing — savollaringizga javob beramiz va ro'yxatdan o'tkazamiz.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="final__inner reveal">
+    <h2>Turk tilini bugundan boshlang</h2>
+    <p>Savollaringiz bormi? Kurs, narx yoki ro'yxatdan o'tish bo'yicha — Telegramda shaxsan javob beramiz.</p>
+    <a class="cta" href="https://t.me/m/Z9sl2KPUZjdi">
+      <svg aria-hidden="true" focusable="false" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+      <span class="txt">Telegramdan yozish</span>
+    </a>
+    <p class="copy">© 2026 UZTURK — Turk tilini onlayn va offlayn o'rgatuvchi o'quv markazi</p>
+  </div>
+</section>
+
+<div class="stickybar">
+  <a class="cta cta--block" href="https://t.me/m/Z9sl2KPUZjdi">
+    <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+    <span class="txt">Telegramdan yozish</span>
+  </a>
+</div>
+
+<script>
+(function(){
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+
+document.addEventListener('click', function(e){
+  var el = e.target.closest ? e.target.closest('.cta') : null;
+  if (!el) return;
+  var href = el.getAttribute('href');
+  if (typeof fbq !== 'function' || !href) return;
+  e.preventDefault();
+  var eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('e-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+  var payload = { content_name: 'tg-landing', currency: 'USD', value: 1 };
+  try {
+    fbq('trackSingle', '2613961429062390', 'Lead', payload, { eventID: eventId });
+  } catch (err) {
+    try { fbq('track', 'Lead', payload, { eventID: eventId }); } catch (err2) {}
+  }
+  setTimeout(function(){ window.location.href = href; }, 250);
+}, true);
+</script>
+</body>
+</html>
