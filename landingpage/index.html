@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+<link rel="dns-prefetch" href="https://connect.facebook.net">
+<link rel="preconnect" href="https://www.facebook.com">
+<title>UZTURK — Turk tili kursi</title>
+<meta name="description" content="2-3 oy ichida turk tilida bemalol gaplashing va B2 sertifikat oling. Bepul konsultatsiya uchun ro'yxatdan o'ting.">
+<base href="/tg/">
+<link rel="canonical" href="https://irodahoca.uz/tg/landingpage">
+<link rel="icon" type="image/png" href="./images/favicon.png">
+<link rel="apple-touch-icon" href="./images/logo.png">
+<meta property="og:title" content="UZTURK — Turk tili kursi">
+<meta property="og:description" content="2-3 oy ichida turk tilida bemalol gaplashing va B2 sertifikat oling.">
+<meta property="og:image" content="./images/ustoz2.webp">
+<meta property="og:type" content="website">
+<link rel="preload" as="image" href="./images/ustoz2.webp" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-800.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-700.woff2" crossorigin>
+<!-- Meta Pixel Code (fbevents.js fetch deferred to idle/interaction so it can't block LCP paint) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];
+n.__start=function(){t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s);n.__start=null};
+}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('set', 'autoConfig', false, '2613961429062390');
+fbq('init', '2613961429062390');
+fbq('track', 'PageView');
+(function(){
+  function start(){ if(fbq.__start) fbq.__start(); }
+  addEventListener('load', function(){ setTimeout(start, 4500); });
+  ['scroll','touchstart','mousemove'].forEach(function(ev){ addEventListener(ev, start, {once:true, passive:true}); });
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2613961429062390&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<style>
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-400.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-500.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-700.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-800.woff2) format('woff2');font-weight:800;font-style:normal;font-display:swap}
+
+:root{
+  --red:#FF4135;
+  --red-text:#CC342A;
+  --green:#1FA22F;
+  --green-text:#188125;
+  --tg:#2AABEE;
+  --tg-dark:#229ED9;
+  --violet:#2AABEE;
+  --violet-dark:#1487C4;
+  --navy:#141414;
+  --cream:#FFF8F0;
+  --wrap:600px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Manrope',Arial,sans-serif;
+  color:var(--navy);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+h1,h2{margin:0}
+ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+
+/* ---- CTA button ---- */
+.cta{
+  position:relative;
+  display:inline-flex;width:100%;
+  align-items:center;justify-content:center;gap:10px;
+  padding:17px 24px;border-radius:14px;
+  background:linear-gradient(135deg,var(--violet) 0%,var(--violet-dark) 100%);
+  color:#fff;font-weight:800;font-size:16px;
+  overflow:hidden;isolation:isolate;
+  border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 14px 28px -8px rgb(90 52 224 / .55);
+}
+.cta::after{
+  content:'';position:absolute;top:-40%;left:-30%;width:30%;height:180%;
+  background:linear-gradient(90deg,transparent,rgb(255 255 255 / .55),transparent);
+  transform:translateX(0) skewX(-18deg);
+  animation:sheen 3.2s linear .8s infinite;animation-play-state:paused;z-index:1;
+}
+@keyframes sheen{0%{transform:translateX(0) skewX(-18deg)}55%,100%{transform:translateX(500%) skewX(-18deg)}}
+.cta svg,.cta span.txt{position:relative;z-index:2}
+.cta:disabled{opacity:.6;cursor:default}
+@media (prefers-reduced-motion:reduce){.cta::after{animation:none}}
+
+/* ---- attention wiggle (hero CTA only) ---- */
+.cta--wiggle{margin-top:24px;animation:ctaWiggle 2.6s ease-in-out infinite;animation-play-state:paused}
+@keyframes ctaWiggle{
+  0%,55%,100%{transform:translateY(0) rotate(0deg) scale(1)}
+  62%{transform:translateY(-5px) rotate(-1.5deg) scale(1.03)}
+  69%{transform:translateY(0) rotate(1.5deg) scale(1.03)}
+  76%{transform:translateY(-3px) rotate(-1deg) scale(1.01)}
+  83%{transform:translateY(0) rotate(0deg) scale(1)}
+}
+@media (prefers-reduced-motion:reduce){.cta--wiggle{animation:none}}
+
+/* ---- countdown, baked into the CTA button itself so it can't be missed ---- */
+.cta-timer{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgb(255 255 255 / .22);color:#fff;
+  font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;
+  padding:5px 11px;border-radius:9px;
+  animation:timerPulse 1s ease-in-out infinite;animation-play-state:paused;
+}
+.cta-timer::before{content:'⏳';font-size:13px}
+@keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.cta-timer{animation:none}}
+
+/* ---- lead modal ---- */
+.modal-overlay{
+  position:fixed;inset:0;z-index:100;
+  background:rgb(20 20 20 / .55);
+  display:none;align-items:center;justify-content:center;padding:18px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.modal-overlay.is-open{display:flex;opacity:1;visibility:visible;pointer-events:auto}
+.modal-box{
+  position:relative;background:#fff;border-radius:20px;
+  max-width:420px;width:100%;padding:32px 22px 24px;text-align:center;
+  box-shadow:0 30px 60px -20px rgb(0 0 0 / .4);
+  transform:translateY(16px) scale(.97);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.is-open .modal-box{transform:translateY(0) scale(1)}
+.modal-close{
+  position:absolute;top:10px;right:10px;width:34px;height:34px;border:none;
+  background:rgb(20 20 20 / .06);border-radius:50%;font-size:20px;line-height:1;
+  cursor:pointer;color:var(--navy);
+}
+body.modal-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.modal-overlay,.modal-box{transition:none}}
+
+/* ---- hero ---- */
+.hero{
+  position:relative;padding:18px 0 34px;
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgb(42 171 238 / .55), transparent 62%),
+    radial-gradient(80% 45% at 100% 100%, rgb(255 65 53 / .14), transparent 60%),
+    linear-gradient(160deg,#123A5E 0%,#0A2036 100%);
+  overflow:hidden;text-align:center;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(rgb(255 255 255 / .35) 1.4px, transparent 1.4px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(70% 55% at 50% 20%, #000 0%, transparent 75%);
+}
+.hero .wrap{position:relative;z-index:1}
+.hero::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:40px;z-index:0;
+  background:linear-gradient(to bottom, transparent, var(--cream));
+  pointer-events:none;
+}
+.brand{font-weight:800;font-size:18px;text-transform:uppercase;color:var(--red-text);margin-bottom:14px}
+.brand span{color:var(--green-text)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;
+  color:#fff;background:rgb(255 255 255 / .08);border:1px solid rgb(255 255 255 / .16);
+  border-radius:99px;padding:7px 14px 7px 10px;
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:99px;background:#22C55E;position:relative;flex:none}
+.eyebrow .dot::before{content:'';position:absolute;inset:0;border-radius:inherit;background:#22C55E;opacity:.7;animation:ping 1.5s cubic-bezier(0,0,.2,1) infinite;animation-play-state:paused}
+@keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.eyebrow .dot::before{animation:none}}
+.hero h1{
+  margin-top:10px;font-weight:800;font-size:clamp(15px,4.4vw,21px);line-height:1.16;
+  text-transform:uppercase;letter-spacing:-.01em;color:#fff;
+}
+.hero h1 .accent{color:#FF6B5E}
+.money-ico{display:inline-block;font-size:.92em;animation:moneyPulse 1.5s ease-in-out infinite;animation-play-state:paused}
+.money-ico--alt{animation-delay:.5s}
+@keyframes moneyPulse{
+  0%,100%{transform:translateY(0) scale(1) rotate(0deg)}
+  50%{transform:translateY(-5px) scale(1.22) rotate(-8deg)}
+}
+@media (prefers-reduced-motion:reduce){.money-ico{animation:none}}
+.hero .sub{margin:8px 0 0;color:#4ADE80;font-weight:700;font-size:15px}
+
+.hero__media{position:relative;max-width:320px;margin:14px auto 0}
+.hero__media::before{
+  content:'';position:absolute;z-index:0;inset:-10% -16%;border-radius:50%;
+  background:
+    radial-gradient(58% 58% at 50% 36%, rgb(42 171 238 / .42), transparent 70%),
+    radial-gradient(52% 52% at 78% 78%, rgb(31 162 47 / .30), transparent 70%),
+    radial-gradient(50% 50% at 18% 84%, rgb(255 65 53 / .26), transparent 70%);
+  filter:blur(14px);
+  animation:heroGlowDrift 7s ease-in-out infinite;animation-play-state:paused;
+}
+.hero__media::after{
+  content:'';position:absolute;z-index:0;left:50%;bottom:-3%;
+  width:64%;height:8%;transform:translateX(-50%);
+  background:radial-gradient(50% 50% at 50% 50%, rgb(0 0 0 / .5), transparent 75%);
+  filter:blur(6px);
+  animation:heroShadowPulse 7s ease-in-out infinite;animation-play-state:paused;
+}
+@keyframes heroGlowDrift{
+  0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}
+  50%{transform:translate(2%,-3%) scale(1.08) rotate(4deg)}
+}
+@keyframes heroShadowPulse{
+  0%,100%{transform:translateX(-50%) scale(1);opacity:.6}
+  50%{transform:translateX(-50%) scale(1.15);opacity:.35}
+}
+@media (prefers-reduced-motion:reduce){.hero__media::before,.hero__media::after{animation:none}}
+.hero__photo{position:relative;z-index:1;border-radius:18px;overflow:hidden;filter:drop-shadow(0 22px 34px rgb(20 20 20 / .32))}
+.hero__photo picture{display:block}
+.hero__photo img{display:block}
+.hero__bio{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;text-align:left;
+  padding:34px 14px 12px;
+  background:linear-gradient(to top, rgb(12 8 28 / .94) 15%, rgb(12 8 28 / .55) 60%, transparent 100%);
+}
+.hero__bio-name{margin:0;color:#fff;font-weight:800;font-size:15px}
+.hero__bio-stats{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
+.hero__bio-stats li{
+  display:flex;align-items:center;gap:5px;
+  color:rgb(255 255 255 / .92);font-weight:700;font-size:11px;white-space:nowrap;
+}
+.hero__bio-stats li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--violet);flex:none}
+
+.checklist{margin-top:24px;display:flex;flex-direction:column;gap:10px;text-align:left}
+.checklist li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;line-height:1.4;font-weight:600;color:rgb(255 255 255 / .88)}
+.checklist .ico{
+  flex:none;width:22px;height:22px;border-radius:50%;margin-top:1px;
+  background:var(--green);display:flex;align-items:center;justify-content:center;
+}
+.checklist .ico svg{width:12px;height:12px}
+.hero .cta{margin-top:14px}
+.hero__proof{margin-top:12px;display:flex;justify-content:center}
+.proof-badge{
+  max-width:100%;display:flex;align-items:center;justify-content:center;gap:6px;
+  background:#fff;border-radius:99px;padding:9px 14px;
+  font-weight:800;font-size:12px;line-height:1.15;color:var(--navy);
+  box-shadow:0 8px 20px -10px rgb(0 0 0 / .35);
+}
+.proof-badge span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:380px){.proof-badge{font-size:10px;padding:8px 10px}}
+.proof-badge__ico{
+  flex:none;width:16px;height:16px;border-radius:50%;background:var(--violet);
+  display:flex;align-items:center;justify-content:center;
+}
+.proof-badge__ico svg{width:9px;height:9px}
+.info-pill{
+  display:flex;align-items:flex-start;gap:10px;margin-top:10px;
+  background:#fff;border-radius:16px;padding:10px 16px;text-align:left;
+  box-shadow:0 8px 20px -10px rgb(0 0 0 / .35);
+}
+.info-pill__check{
+  flex:none;width:22px;height:22px;border-radius:50%;background:var(--violet);margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+}
+.info-pill__check svg{width:12px;height:12px}
+.info-pill p{margin:0;font-size:14px;font-weight:700;line-height:1.4;color:var(--navy)}
+.hl-badge{
+  display:inline-block;background:var(--violet);color:#fff;
+  padding:1px 8px;border-radius:6px;font-weight:800;
+}
+
+/* ---- signup (inside modal) ---- */
+.signup__head{text-align:center;margin-bottom:20px}
+.signup__head h2{font-weight:800;font-size:clamp(20px,5vw,26px);text-transform:uppercase;line-height:1.2}
+.signup__head h2 .accent{color:var(--red)}
+.signup__head p{margin-top:8px;color:#4b4b4b;font-size:14px;line-height:1.5}
+
+.lead-form form{display:flex;flex-direction:column;gap:10px}
+.lead-form input{
+  width:100%;padding:15px 16px;border-radius:12px;
+  border:1.5px solid rgb(20 20 20 / .13);background:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;color:var(--navy);
+}
+.lead-form input::placeholder{font-weight:600;color:rgb(20 20 20 / .38)}
+.lead-form input:focus{outline:none;border-color:var(--violet)}
+.phone-input{display:flex;align-items:stretch;border-radius:12px;border:1.5px solid rgb(20 20 20 / .13);background:#fff;overflow:hidden}
+.phone-input:focus-within{border-color:var(--violet)}
+.phone-input__prefix{display:flex;align-items:center;gap:6px;padding:0 12px;font-weight:800;font-size:15px;color:var(--navy);background:rgb(20 20 20 / .05);border-right:1.5px solid rgb(20 20 20 / .13)}
+.phone-input__flag{font-size:13px}
+.phone-input input{border:none;background:transparent;border-radius:0;width:auto;flex:1;padding:15px 14px 15px 10px}
+.lead-form .msg{margin-top:14px;font-size:14px;font-weight:700;min-height:1.4em;text-align:center}
+.lead-form .msg--ok{color:var(--green-text)}
+.lead-form .msg--err{color:var(--red-text)}
+
+/* ---- achieve (kursda nimalarga erishasiz) ---- */
+.achieve{background:#fff;padding:36px 0 40px}
+.achieve__title{
+  text-align:center;font-weight:800;font-size:clamp(20px,5vw,26px);line-height:1.3;
+  text-transform:uppercase;
+}
+.achieve__title .hl{
+  background:rgb(42 171 238 / .16);border-radius:5px;padding:0 5px;
+  text-decoration:underline;text-decoration-color:var(--violet);text-underline-offset:3px;
+}
+.achieve-list{margin:22px 0 0;display:flex;flex-direction:column;gap:12px}
+.achieve-list li{
+  display:flex;align-items:flex-start;gap:14px;
+  background:#fff;border:1.5px solid rgb(20 20 20 / .08);border-left:4px solid var(--violet);
+  border-radius:14px;padding:16px 18px;
+  box-shadow:0 10px 22px -16px rgb(20 20 20 / .3);
+}
+.achieve-list .num{
+  flex:none;width:28px;height:28px;border-radius:50%;margin-top:1px;
+  background:var(--violet);color:#fff;font-weight:800;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+}
+.achieve-list p{margin:0;font-size:14.5px;line-height:1.45;font-weight:600;color:#232323}
+.refund-ways__note{
+  margin:18px 0 0;text-align:center;font-size:14.5px;font-weight:700;color:#232323;
+  line-height:1.45;
+}
+.refund-ways__note strong{color:var(--green-text)}
+
+/* ---- why us / advantages ---- */
+.why{background:var(--cream);padding:36px 0 40px}
+.why__title{font-weight:800;font-size:clamp(20px,5vw,26px);line-height:1.25;text-align:center}
+.why__title .hl{text-decoration:underline;text-decoration-color:var(--green);text-underline-offset:3px}
+.why-list{margin:22px 0 0;display:flex;flex-direction:column;gap:12px}
+.why-list li{
+  display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:14px;
+  background:#fff;border:1.5px solid rgb(20 20 20 / .08);border-left:4px solid var(--green);
+}
+.why-list .ico{
+  flex:none;width:24px;height:24px;border-radius:50%;margin-top:1px;
+  background:var(--green);display:flex;align-items:center;justify-content:center;
+}
+.why-list p{margin:0;font-size:14.5px;line-height:1.45;font-weight:600;color:#232323}
+
+.urgency{
+  position:relative;overflow:hidden;
+  margin-top:26px;text-align:center;border-radius:22px;padding:28px 20px 26px;
+  background:linear-gradient(160deg,#123A5E 0%,#0A2036 100%);
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+}
+.urgency::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(rgb(255 255 255 / .3) 1.4px, transparent 1.4px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(70% 70% at 50% 30%, #000 0%, transparent 75%);
+}
+.urgency>*{position:relative;z-index:1}
+.urgency__badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:800;font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;
+  color:#8FD4FF;background:rgb(42 171 238 / .14);border:1px solid rgb(42 171 238 / .35);
+  border-radius:99px;padding:8px 16px;
+}
+.urgency__dot{width:6px;height:6px;border-radius:50%;background:var(--violet);flex:none}
+.urgency__timer{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:150px;background:linear-gradient(135deg,var(--violet) 0%,var(--violet-dark) 100%);color:#fff;font-weight:800;font-size:32px;
+  font-variant-numeric:tabular-nums;border-radius:14px;padding:8px 26px;
+  box-shadow:0 14px 28px -10px rgb(90 52 224 / .55);
+  animation:timerPulse 1s ease-in-out infinite;animation-play-state:paused;
+}
+@media (prefers-reduced-motion:reduce){.urgency__timer{animation:none}}
+.urgency__note{margin:0;color:rgb(255 255 255 / .78);font-weight:700;font-size:14px}
+.urgency .cta{margin-top:0}
+
+footer{padding:22px 0 30px;text-align:center;background:#fff}
+footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02em}
+
+/* ---- sticky bottom bar (mobile) — persistent CTA while scrolling ---- */
+.stickybar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:#fff;
+  border-top:1px solid rgb(20 20 20 / .08);
+  box-shadow:0 -8px 20px -6px rgb(20 20 20 / .12);
+  display:none;
+  align-items:center;gap:10px;
+  transform:translateY(100%);
+  transition:transform .3s ease;
+}
+.stickybar .cta{margin-top:0;flex:1 1 auto}
+@media (prefers-reduced-motion:reduce){.stickybar{transition:none}}
+@media (max-width:760px){
+  .stickybar{display:flex}
+  .stickybar.is-visible{transform:translateY(0)}
+  body.has-stickybar{padding-bottom:74px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Onlayn turk tili kursi</span>
+    <h1><span class="money-ico" aria-hidden="true">💰</span> Kursimizga to'lov qilib <span class="accent">pulingizni</span><br><span class="accent">100%</span> qaytarib olishingiz mumkin<span class="money-ico money-ico--alt" aria-hidden="true">💵</span></h1>
+
+    <div class="hero__media">
+      <div class="hero__photo">
+        <picture>
+          <img src="./images/ustoz2.webp" alt="Iroda Nasriddinova — UZTURK kurs muallifi" fetchpriority="high" width="780" height="1019">
+        </picture>
+        <div class="hero__bio">
+          <p class="hero__bio-name">Iroda Nasriddinova</p>
+          <ul class="hero__bio-stats">
+            <li>6 yillik tajriba</li>
+            <li>C1 darajali ustoz</li>
+            <li>3000+ o'quvchi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="sub">Turk tilini 40 darsda o'rganib sertifikat olasiz</p>
+
+    <a class="cta cta--wiggle js-open-modal" href="/tg/landingpage#signup">
+      <svg aria-hidden="true" focusable="false" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+      <span class="txt">Ro'yxatdan o'tish</span>
+      <span class="cta-timer js-countdown">01:00</span>
+    </a>
+  </div>
+</section>
+
+<section class="achieve refund-ways">
+  <div class="wrap">
+    <h2 class="achieve__title">Pulingizni <span class="hl">qanday 100% qaytarib olasiz?</span></h2>
+    <ol class="achieve-list">
+      <li><span class="num">1</span><p><strong>4 ta darajani muvaffaqiyatli tugatsangiz</strong> — 200 000 so'm qaytarib beriladi.</p></li>
+      <li><span class="num">2</span><p><strong>Kursni to'liq bitirib, uyga vazifa va davomatingiz 100% bo'lsa</strong> — imtihon puli to'liq to'lab beriladi, ya'ni yana 600 000 so'm qaytarib olasiz.</p></li>
+      <li><span class="num">3</span><p><strong>Birinchi urinishdayoq C1 sertifikat olsangiz</strong> — kursga to'lagan pulingizning 50% qaytarib beriladi.</p></li>
+    </ol>
+    <p class="refund-ways__note">Ushbu 3 yo'lni birlashtirib, kursga to'lagan pulingizni <strong>100%</strong> qaytarib olishingiz mumkin.</p>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <h2 class="why__title">Nega aynan <span class="hl">UZTURK</span>?</h2>
+    <ul class="why-list">
+      <li><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>6 yillik tajriba — C1 darajali ustozlar siz bilan shug'ullanadi</p></li>
+      <li><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>3000+ o'quvchi kursimizni muvaffaqiyatli bitirgan</p></li>
+      <li><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Haftada 7 kun, 3 ta tajribali ustoz siz bilan shug'ullanadi</p></li>
+      <li><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Kurs davomida Nazoratchi + AI yordamchi 24/7 savollaringizga javob beradi</p></li>
+      <li><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Sertifikat CEFR/TYS talablariga mos — magistratura/bakalavrga kirishda va chet tili blokida maksimal ball uchun qabul qilinadi</p></li>
+      <li><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Kursni muvaffaqiyatli bitirib, sertifikat ololmasangiz — to'lagan pulingiz 100% qaytariladi</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="achieve">
+  <div class="wrap">
+    <h2 class="achieve__title">Kursimizda <span class="hl">nimalarga erishasiz?</span></h2>
+    <ol class="achieve-list">
+      <li><span class="num">1</span><p>Turk tilida 2–3 oyda bemalol gaplasha oladigan darajaga chiqasiz.</p></li>
+      <li><span class="num">2</span><p>A1 dan B2 darajagacha barcha bosqichlarni to'liq tugatasiz.</p></li>
+      <li><span class="num">3</span><p>CEFR va TYS imtihonlarida kamida B2 sertifikatga ega bo'lasiz.</p></li>
+    </ol>
+
+    <div class="urgency">
+      <span class="urgency__badge"><span class="urgency__dot"></span>Joylar soni va vaqt oz qoldi</span>
+      <div class="urgency__timer js-countdown">01:00</div>
+      <p class="urgency__note">Guruhlar to'lguncha ro'yxatdan o'ting</p>
+      <a class="cta js-open-modal" href="/tg/landingpage#signup">
+        <svg aria-hidden="true" focusable="false" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+        <span class="txt">Ro'yxatdan o'tish</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="leadModalOverlay">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+    <button type="button" class="modal-close" id="leadModalClose" aria-label="Yopish">&times;</button>
+    <div class="signup__head">
+      <h2 id="leadModalTitle">Bepul <span class="accent">konsultatsiya</span> uchun yozib qoldiring</h2>
+      <p>Ism familiyangiz va telefon raqamingizni qoldiring — o'zimiz siz bilan bog'lanamiz.</p>
+    </div>
+    <div class="lead-form">
+      <form id="leadForm" novalidate>
+        <input type="text" name="name" id="leadName" placeholder="Ism familiyangiz" autocomplete="name" required>
+        <div class="phone-input">
+          <span class="phone-input__prefix"><span class="phone-input__flag">🇺🇿</span>+998</span>
+          <input type="tel" inputmode="numeric" name="phone" id="leadPhone" placeholder="90 123 45 67" autocomplete="tel" maxlength="9" required>
+        </div>
+        <button type="submit" class="cta">
+          <span class="txt">Ro'yxatdan o'tish</span>
+        </button>
+        <p class="msg" id="leadMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 UZTURK — Turk tilini onlayn va offlayn o'rgatuvchi o'quv markazi</p>
+</footer>
+
+<div class="stickybar">
+  <a class="cta js-open-modal" href="/tg/landingpage#signup">
+    <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+    <span class="txt">Ro'yxatdan o'tish</span>
+    <span class="cta-timer js-countdown">01:00</span>
+  </a>
+</div>
+
+<script>
+(function(){
+  var overlay = document.getElementById('leadModalOverlay');
+  var closeBtn = document.getElementById('leadModalClose');
+  var openers = document.querySelectorAll('.js-open-modal');
+  if (!overlay || !openers.length) return;
+
+  function openModal(e){
+    if (e) e.preventDefault();
+    overlay.classList.add('is-open');
+    document.body.classList.add('modal-open');
+  }
+  function closeModal(){
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('modal-open');
+  }
+
+  openers.forEach(function(el){ el.addEventListener('click', openModal); });
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+})();
+
+(function(){
+  var heroCta = document.querySelector('.hero .cta');
+  var stickybar = document.querySelector('.stickybar');
+  if (!heroCta || !stickybar || !('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      stickybar.classList.toggle('is-visible', !entry.isIntersecting);
+      document.body.classList.toggle('has-stickybar', !entry.isIntersecting);
+    });
+  }, { threshold: 0 });
+  obs.observe(heroCta);
+})();
+
+(function(){
+  var els = document.querySelectorAll('.js-countdown');
+  if (!els.length) return;
+  var seconds = 60;
+  function render(){
+    var m = Math.floor(seconds / 60);
+    var s = seconds % 60;
+    var text = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+    els.forEach(function(el){ el.textContent = text; });
+  }
+  render();
+  setInterval(function(){
+    seconds = seconds <= 0 ? 60 : seconds - 1;
+    render();
+  }, 1000);
+})();
+
+var leadForm = document.getElementById('leadForm');
+if (leadForm) {
+  var phoneDigitsEl = document.getElementById('leadPhone');
+  phoneDigitsEl.addEventListener('input', function(){
+    phoneDigitsEl.value = phoneDigitsEl.value.replace(/\D/g, '').slice(0, 9);
+  });
+
+  leadForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var msgEl = document.getElementById('leadMsg');
+    var nameEl = document.getElementById('leadName');
+    var btn = leadForm.querySelector('button[type="submit"]');
+    var name = nameEl.value.trim();
+    var phoneDigits = phoneDigitsEl.value.replace(/\D/g, '');
+
+    msgEl.textContent = '';
+    msgEl.className = 'msg';
+
+    if (name.length < 2) {
+      msgEl.textContent = 'Iltimos, ism familiyangizni kiriting.';
+      msgEl.className = 'msg msg--err';
+      nameEl.focus();
+      return;
+    }
+    if (phoneDigits.length !== 9) {
+      msgEl.textContent = 'Iltimos, telefon raqamingizni to\'liq kiriting (9 ta raqam).';
+      msgEl.className = 'msg msg--err';
+      phoneDigitsEl.focus();
+      return;
+    }
+
+    var phone = '+998' + phoneDigits;
+    btn.disabled = true;
+
+    var eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('e-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+
+    // /api/leads serverda Bitrix24 bilan ishlagani uchun ~1.3s cho'ziladi —
+    // shuni kutib turmasdan ("keepalive" bilan fon rejimida yuborib, javobni
+    // kutmay) darhol rahmat sahifasiga o'tkazamiz, 1 soniyadan tez bo'lishi uchun.
+    try {
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, phone: phone, source: 'tg-landingpage', event_id: eventId, source_url: window.location.href }),
+        keepalive: true
+      }).catch(function(){});
+    } catch (err) {}
+
+    if (typeof fbq === 'function') {
+      try { fbq('trackSingle', '2613961429062390', 'Lead', { content_name: 'tg-landingpage-form' }, { eventID: eventId }); }
+      catch (err) { try { fbq('track', 'Lead', { content_name: 'tg-landingpage-form' }, { eventID: eventId }); } catch (err2) {} }
+    }
+    window.location.href = '/tg/rahmat/';
+  });
+}
+</script>
+</body>
+</html>
