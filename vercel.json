@@ -1,4 +1,8 @@
 {
+  "rewrites": [
+    { "source": "/tg/images/:path*", "destination": "https://irodahoca.uz/tg/images/:path*" },
+    { "source": "/tg/fonts/:path*", "destination": "https://irodahoca.uz/tg/fonts/:path*" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
