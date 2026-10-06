@@ -208,6 +208,9 @@ body.modal-open{overflow:hidden}
 }
 .hero__media picture{position:relative;z-index:1;display:block;border-radius:18px;overflow:hidden}
 .hero__media img{position:relative;border-radius:18px;filter:drop-shadow(0 22px 34px rgb(20 20 20 / .32))}
+.hero__media img.js-fade-in{opacity:0;transition:opacity .35s ease}
+.hero__media img.js-fade-in.is-loaded{opacity:1}
+@media (prefers-reduced-motion:reduce){.hero__media img.js-fade-in{transition:none}}
 /* AI "scan" sweep over the photo */
 .hero__media picture::after{
   content:'';position:absolute;left:4%;right:4%;height:3px;z-index:2;
@@ -391,7 +394,7 @@ footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02e
     <div class="hero__media">
       <picture>
         <source media="(max-width:600px)" srcset="./images/hero-mobile.avif" type="image/avif">
-        <img src="./images/hero.avif" alt="Iroda Nasriddinova — UZTURK kurs muallifi" fetchpriority="high" width="813" height="929">
+        <img src="./images/hero.avif" alt="Iroda Nasriddinova — UZTURK kurs muallifi" fetchpriority="high" width="813" height="929" class="js-fade-in" onload="this.classList.add('is-loaded')">
       </picture>
       <div class="ai-tutor" aria-hidden="true">
         <span class="ai-tutor__ring"></span>

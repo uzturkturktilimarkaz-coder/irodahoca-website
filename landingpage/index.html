@@ -14,9 +14,10 @@
 <link rel="apple-touch-icon" href="./images/logo.png">
 <meta property="og:title" content="UZTURK — Turk tili kursi">
 <meta property="og:description" content="2-3 oy ichida turk tilida bemalol gaplashing va B2 sertifikat oling.">
-<meta property="og:image" content="./images/ustoz2.webp">
+<meta property="og:image" content="./images/hero.avif">
 <meta property="og:type" content="website">
-<link rel="preload" as="image" href="./images/ustoz2.webp" fetchpriority="high">
+<link rel="preload" as="image" href="./images/hero-mobile.avif" fetchpriority="high" media="(max-width:600px)">
+<link rel="preload" as="image" href="./images/hero.avif" fetchpriority="high" media="(min-width:601px)">
 <link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-800.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-700.woff2" crossorigin>
 <!-- Meta Pixel Code (fbevents.js fetch deferred to idle/interaction so it can't block LCP paint) -->
@@ -223,6 +224,9 @@ body.modal-open{overflow:hidden}
 .hero__photo{position:relative;z-index:1;border-radius:18px;overflow:hidden;filter:drop-shadow(0 22px 34px rgb(20 20 20 / .32))}
 .hero__photo picture{display:block}
 .hero__photo img{display:block}
+.hero__photo img.js-fade-in{opacity:0;transition:opacity .35s ease}
+.hero__photo img.js-fade-in.is-loaded{opacity:1}
+@media (prefers-reduced-motion:reduce){.hero__photo img.js-fade-in{transition:none}}
 .hero__bio{
   position:absolute;left:0;right:0;bottom:0;z-index:2;text-align:left;
   padding:34px 14px 12px;
@@ -407,7 +411,8 @@ footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02e
     <div class="hero__media">
       <div class="hero__photo">
         <picture>
-          <img src="./images/ustoz2.webp" alt="Iroda Nasriddinova — UZTURK kurs muallifi" fetchpriority="high" width="780" height="1019">
+          <source media="(max-width:600px)" srcset="./images/hero-mobile.avif" type="image/avif">
+          <img src="./images/hero.avif" alt="Iroda Nasriddinova — UZTURK kurs muallifi" fetchpriority="high" width="813" height="929" class="js-fade-in" onload="this.classList.add('is-loaded')">
         </picture>
         <div class="hero__bio">
           <p class="hero__bio-name">Iroda Nasriddinova</p>
