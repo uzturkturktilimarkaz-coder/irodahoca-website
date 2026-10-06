@@ -200,17 +200,15 @@ body.modal-open{overflow:hidden}
 .hero__media::before{
   content:'';position:absolute;z-index:0;inset:-10% -16%;border-radius:50%;
   background:
-    radial-gradient(58% 58% at 50% 36%, rgb(42 171 238 / .42), transparent 70%),
-    radial-gradient(52% 52% at 78% 78%, rgb(31 162 47 / .30), transparent 70%),
-    radial-gradient(50% 50% at 18% 84%, rgb(255 65 53 / .26), transparent 70%);
-  filter:blur(14px);
+    radial-gradient(58% 58% at 50% 36%, rgb(42 171 238 / 0.42) 0%, rgb(42 171 238 / 0.357) 25%, rgb(42 171 238 / 0.231) 45%, rgb(42 171 238 / 0.118) 62%, rgb(42 171 238 / 0.0) 78%),
+    radial-gradient(52% 52% at 78% 78%, rgb(31 162 47 / 0.3) 0%, rgb(31 162 47 / 0.255) 25%, rgb(31 162 47 / 0.165) 45%, rgb(31 162 47 / 0.084) 62%, rgb(31 162 47 / 0.0) 78%),
+    radial-gradient(50% 50% at 18% 84%, rgb(255 65 53 / 0.26) 0%, rgb(255 65 53 / 0.221) 25%, rgb(255 65 53 / 0.143) 45%, rgb(255 65 53 / 0.073) 62%, rgb(255 65 53 / 0.0) 78%);
   animation:heroGlowDrift 7s ease-in-out infinite;animation-play-state:paused;
 }
 .hero__media::after{
   content:'';position:absolute;z-index:0;left:50%;bottom:-3%;
   width:64%;height:8%;transform:translateX(-50%);
-  background:radial-gradient(50% 50% at 50% 50%, rgb(0 0 0 / .5), transparent 75%);
-  filter:blur(6px);
+  background:radial-gradient(50% 50% at 50% 50%, rgb(0 0 0 / .5) 0%, rgb(0 0 0 / .4) 25%, rgb(0 0 0 / .22) 45%, rgb(0 0 0 / .08) 62%, transparent 80%);
   animation:heroShadowPulse 7s ease-in-out infinite;animation-play-state:paused;
 }
 @keyframes heroGlowDrift{
