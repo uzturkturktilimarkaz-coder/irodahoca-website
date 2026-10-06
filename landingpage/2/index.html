@@ -659,13 +659,21 @@ if (leadForm) {
     rafId = requestAnimationFrame(frame);
   }
 
-  resize();
-  window.addEventListener('resize', resize);
-  rafId = requestAnimationFrame(frame);
+  // Animatsiyani darhol emas, "load" dan keyin biroz kechiktirib boshlaymiz —
+  // doimiy requestAnimationFrame sikli sahifa "hali tugamagan" deb
+  // hisoblanishiga (Speed Index) sabab bo'lardi, holbuki hero matn/rasm
+  // ancha oldin ko'rinib bo'lgan. fbq pixel'dagi kabi bir xil naqsh.
+  function start(){
+    if (rafId) return;
+    resize();
+    rafId = requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', function(){ if (rafId) resize(); });
+  addEventListener('load', function(){ setTimeout(start, 2000); });
 
   document.addEventListener('visibilitychange', function(){
     running = !document.hidden;
-    if (running && !rafId) rafId = requestAnimationFrame(frame);
+    if (running && !rafId) start();
   });
 })();
 
