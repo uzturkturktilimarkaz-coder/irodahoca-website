@@ -20,26 +20,20 @@
 <link rel="preload" as="image" href="./images/hero.avif" fetchpriority="high" media="(min-width:601px)">
 <link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-800.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-700.woff2" crossorigin>
-<!-- Meta Pixel Code (fbevents.js fetch deferred to idle/interaction so it can't block LCP paint) -->
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];
-n.__start=function(){t=b.createElement(e);t.async=!0;
+n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s);n.__start=null};
+s.parentNode.insertBefore(t,s);
 }(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('set', 'autoConfig', false, '2613961429062390');
 fbq('init', '2613961429062390');
 fbq('track', 'PageView');
-(function(){
-  function start(){ if(fbq.__start) fbq.__start(); }
-  addEventListener('load', function(){ setTimeout(start, 4500); });
-  ['scroll','touchstart','mousemove'].forEach(function(ev){ addEventListener(ev, start, {once:true, passive:true}); });
-})();
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2613961429062390&ev=PageView&noscript=1"
