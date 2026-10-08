@@ -1,7 +1,12 @@
 {
   "rewrites": [
     { "source": "/tg/images/:path*", "destination": "https://irodahoca.uz/tg/images/:path*" },
-    { "source": "/tg/fonts/:path*", "destination": "https://irodahoca.uz/tg/fonts/:path*" }
+    { "source": "/tg/fonts/:path*", "destination": "https://irodahoca.uz/tg/fonts/:path*" },
+    { "source": "/tg/rahmat", "destination": "/rahmat" },
+    { "source": "/tg/rahmat/", "destination": "/rahmat" },
+    { "source": "/tg/landingpage", "destination": "/landingpage" },
+    { "source": "/tg/landingpage/", "destination": "/landingpage" },
+    { "source": "/tg/landingpage/:path*", "destination": "/landingpage/:path*" }
   ],
   "headers": [
     {
