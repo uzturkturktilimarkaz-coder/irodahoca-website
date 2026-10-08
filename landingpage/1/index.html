@@ -583,24 +583,24 @@ if (leadForm) {
 
     var eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('e-' + Date.now() + '-' + Math.random().toString(16).slice(2));
 
-    fetch('/api/leads', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, phone: phone, source: 'tg-landingpage-1', event_id: eventId, source_url: window.location.href })
-    }).then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
-      .then(function(result){
-        if (!result.ok || !result.data || !result.data.ok) throw new Error('lead_failed');
-        if (typeof fbq === 'function') {
-          try { fbq('trackSingle', '2613961429062390', 'Lead', { content_name: 'tg-landingpage-1-form' }, { eventID: eventId }); }
-          catch (err) { try { fbq('track', 'Lead', { content_name: 'tg-landingpage-1-form' }, { eventID: eventId }); } catch (err2) {} }
-        }
-        window.location.href = '/tg/rahmat/';
-      })
-      .catch(function(){
-        msgEl.textContent = 'Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.';
-        msgEl.className = 'msg msg--err';
-        btn.disabled = false;
-      });
+    // /api/leads serverga (va vercel.app'da qo'shimcha hop bilan irodahoca.uz'ga)
+    // borib Bitrix24 bilan ishlagani uchun sekinlashadi — shuni kutib turmasdan
+    // ("keepalive" bilan fon rejimida yuborib, javobni kutmay) darhol rahmat
+    // sahifasiga o'tkazamiz, 1 soniyadan tez bo'lishi uchun.
+    try {
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, phone: phone, source: 'tg-landingpage-1', event_id: eventId, source_url: window.location.href }),
+        keepalive: true
+      }).catch(function(){});
+    } catch (err) {}
+
+    if (typeof fbq === 'function') {
+      try { fbq('trackSingle', '2613961429062390', 'Lead', { content_name: 'tg-landingpage-1-form' }, { eventID: eventId }); }
+      catch (err) { try { fbq('track', 'Lead', { content_name: 'tg-landingpage-1-form' }, { eventID: eventId }); } catch (err2) {} }
+    }
+    window.location.href = '/tg/rahmat/';
   });
 }
 </script>
