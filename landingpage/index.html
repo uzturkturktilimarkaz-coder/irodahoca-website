@@ -601,10 +601,11 @@ if (leadForm) {
     // shuni kutib turmasdan ("keepalive" bilan fon rejimida yuborib, javobni
     // kutmay) darhol rahmat sahifasiga o'tkazamiz, 1 soniyadan tez bo'lishi uchun.
     try {
+      var fbCookie = function(n){ var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; };
       fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, phone: phone, source: 'tg-landingpage', event_id: eventId, source_url: window.location.href }),
+        body: JSON.stringify({ name: name, phone: phone, source: 'tg-landingpage', event_id: eventId, source_url: window.location.href, fbp: fbCookie('_fbp'), fbc: fbCookie('_fbc') }),
         keepalive: true
       }).catch(function(){});
     } catch (err) {}
