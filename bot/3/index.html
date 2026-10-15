@@ -460,7 +460,8 @@ footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02e
       try { fbq('trackSingle', '2613961429062390', 'Lead', { content_name: 'tg-bot-3-cta' }, { eventID: eventId }); }
       catch (err) { try { fbq('track', 'Lead', { content_name: 'tg-bot-3-cta' }, { eventID: eventId }); } catch (err2) {} }
     }
-    setTimeout(function(){ window.location.href = 'https://t.me/uzturkadmin_bot?start=bot_target_sayt'; }, 500);
+    var botStartPayload = (new URLSearchParams(location.search).has('fbclid')) ? 'meta_bot3' : 'bot_target_sayt';
+    setTimeout(function(){ window.location.href = 'https://t.me/uzturkadmin_bot?start=' + botStartPayload; }, 500);
   }
   function closeModal(){
     overlay.classList.remove('is-open');
