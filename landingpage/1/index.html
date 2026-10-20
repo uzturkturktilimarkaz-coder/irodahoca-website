@@ -33,7 +33,17 @@ s.parentNode.insertBefore(t,s);
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('set', 'autoConfig', false, '2613961429062390');
 fbq('init', '2613961429062390');
-fbq('track', 'PageView');
+var __pvId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('pv-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+    fbq('track', 'PageView', {}, { eventID: __pvId });
+    try {
+      var __m = document.cookie.match(/(?:^|; )_fbp=([^;]*)/);
+      var __fbp = __m ? decodeURIComponent(__m[1]) : '';
+      __m = document.cookie.match(/(?:^|; )_fbc=([^;]*)/);
+      var __fbc = __m ? decodeURIComponent(__m[1]) : '';
+      var __payload = JSON.stringify({ event_name: 'PageView', event_id: __pvId, source_url: location.href, fbp: __fbp, fbc: __fbc });
+      if (navigator.sendBeacon) { navigator.sendBeacon('/api/track', new Blob([__payload], { type: 'application/json' })); }
+      else { fetch('/api/track', { method: 'POST', headers: {'Content-Type':'application/json'}, body: __payload, keepalive: true }); }
+    } catch (e) {}
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2613961429062390&ev=PageView&noscript=1"
