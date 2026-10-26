@@ -565,10 +565,11 @@ if (leadForm) {
     // sahifasiga o'tkazamiz, 1 soniyadan tez bo'lishi uchun.
     try {
       var fbCookie = function(n){ var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; };
+      var adParams = new URLSearchParams(window.location.search);
       fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, phone: phone, source: 'tg-bot-2', event_id: eventId, source_url: window.location.href, fbp: fbCookie('_fbp'), fbc: fbCookie('_fbc') }),
+        body: JSON.stringify({ name: name, phone: phone, source: 'tg-bot-2', event_id: eventId, source_url: window.location.href, fbp: fbCookie('_fbp'), fbc: fbCookie('_fbc'), campaign_id: adParams.get('campaign_id') || '', adset_id: adParams.get('adset_id') || '', ad_id: adParams.get('ad_id') || '' }),
         keepalive: true
       }).catch(function(){});
     } catch (err) {}
