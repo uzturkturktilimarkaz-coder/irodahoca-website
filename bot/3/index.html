@@ -547,10 +547,19 @@ if (leadForm) {
     try {
       var fbCookie = function(n){ var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; };
       var adParams = new URLSearchParams(window.location.search);
+      // Meta Ads Manager'da bu kampaniyalar campaign_id/adset_id/ad_id emas,
+      // standart UTM dinamik parametrlari bilan sozlangan: utm_campaign =
+      // campaign ID, utm_term = adset ID, utm_content = ad ID (Graph API
+      // orqali tasdiqlangan, 2026-10-27). Shu uchun avval aniq campaign_id/
+      // adset_id/ad_id (bo'lsa — kelajakda qo'lda test havolalar uchun),
+      // bo'lmasa UTM qiymatlariga tushamiz.
+      var fbCampaignId = adParams.get('campaign_id') || adParams.get('utm_campaign') || '';
+      var fbAdsetId = adParams.get('adset_id') || adParams.get('utm_term') || '';
+      var fbAdId = adParams.get('ad_id') || adParams.get('utm_content') || '';
       fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, phone: phone, source: 'tg-bot-3', event_id: eventId, source_url: window.location.href, fbp: fbCookie('_fbp'), fbc: fbCookie('_fbc'), campaign_id: adParams.get('campaign_id') || '', adset_id: adParams.get('adset_id') || '', ad_id: adParams.get('ad_id') || '' }),
+        body: JSON.stringify({ name: name, phone: phone, source: 'tg-bot-3', event_id: eventId, source_url: window.location.href, fbp: fbCookie('_fbp'), fbc: fbCookie('_fbc'), campaign_id: fbCampaignId, adset_id: fbAdsetId, ad_id: fbAdId }),
         keepalive: true
       }).catch(function(){});
     } catch (err) {}
