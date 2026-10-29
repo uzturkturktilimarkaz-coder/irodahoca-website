@@ -185,29 +185,34 @@ body.modal-open{overflow:hidden}
 @keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
 @media (prefers-reduced-motion:reduce){.eyebrow .dot::before{animation:none}}
 
-/* ---- offers (bitta qatorli tasma, /tg/2 dagi bilan bir xil) ---- */
+/* ---- offers (bitta qatorli tasma, shinamgina pastki rangli chiziq bilan) ---- */
+.hero__ticker{margin-top:0}
 .offers-marquee{
-  overflow:hidden;padding:12px 0 0;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  overflow:hidden;
+  background:rgb(255 255 255 / .08);
+  border:1px solid rgb(255 255 255 / .18);
+  border-radius:99px;
+  padding:10px 0;
+  box-shadow:0 10px 22px -12px rgb(0 0 0 / .5);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
 }
-.hero__ticker{margin-top:16px}
 .offers-track{
-  display:flex;align-items:center;gap:14px;width:max-content;
+  display:flex;align-items:center;gap:16px;width:max-content;
   animation:offersScroll 22s linear infinite;animation-play-state:running;
 }
 .offers-marquee:hover .offers-track{animation-play-state:paused}
 @keyframes offersScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .offer-item{
-  display:inline-flex;align-items:center;gap:8px;flex:none;
-  font-weight:800;font-size:clamp(13px,2vw,15px);line-height:1;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:7px;flex:none;
+  font-weight:700;font-size:12.5px;letter-spacing:.01em;line-height:1;white-space:nowrap;
 }
-.offer-item__icon{font-size:1.15em}
-.offer-item--amber{color:#FFC38A}
-.offer-item--tg{color:#3FBBFF}
-.offer-item--green{color:#4ADE80}
-.offer-item--red{color:#FF7A6E}
-.offer-dot{flex:none;color:rgb(255 255 255 / .22);font-size:18px}
+.offer-item__icon{font-size:1.05em}
+.offer-item--amber{color:#FFCB9A}
+.offer-item--tg{color:#7DD3FC}
+.offer-item--green{color:#86EFAC}
+.offer-item--red{color:#FCA5A5}
+.offer-dot{flex:none;color:rgb(255 255 255 / .28);font-size:13px}
 @media (prefers-reduced-motion:reduce){.offers-track{animation:none}}
 .hero h1{
   margin-top:10px;font-weight:800;font-size:clamp(15px,4.4vw,21px);line-height:1.16;
