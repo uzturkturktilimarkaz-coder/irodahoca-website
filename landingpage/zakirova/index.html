@@ -184,8 +184,31 @@ body.modal-open{overflow:hidden}
 .eyebrow .dot::before{content:'';position:absolute;inset:0;border-radius:inherit;background:#FF6B35;opacity:.7;animation:ping 1.5s cubic-bezier(0,0,.2,1) infinite;animation-play-state:paused}
 @keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
 @media (prefers-reduced-motion:reduce){.eyebrow .dot::before{animation:none}}
-.eyebrow-text{transition:opacity .35s ease}
-.eyebrow-text.is-fading{opacity:0}
+
+/* ---- offers (bitta qatorli tasma, /tg/2 dagi bilan bir xil) ---- */
+.offers-marquee{
+  overflow:hidden;padding:12px 0 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.hero__ticker{margin-top:16px}
+.offers-track{
+  display:flex;align-items:center;gap:14px;width:max-content;
+  animation:offersScroll 22s linear infinite;animation-play-state:paused;
+}
+.offers-marquee:hover .offers-track{animation-play-state:paused}
+@keyframes offersScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.offer-item{
+  display:inline-flex;align-items:center;gap:8px;flex:none;
+  font-weight:800;font-size:clamp(13px,2vw,15px);line-height:1;white-space:nowrap;
+}
+.offer-item__icon{font-size:1.15em}
+.offer-item--amber{color:#FFC38A}
+.offer-item--tg{color:#3FBBFF}
+.offer-item--green{color:#4ADE80}
+.offer-item--red{color:#FF7A6E}
+.offer-dot{flex:none;color:rgb(255 255 255 / .22);font-size:18px}
+@media (prefers-reduced-motion:reduce){.offers-track{animation:none}}
 .hero h1{
   margin-top:10px;font-weight:800;font-size:clamp(15px,4.4vw,21px);line-height:1.16;
   text-transform:uppercase;letter-spacing:-.01em;color:#fff;
@@ -378,7 +401,7 @@ footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02e
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span><span class="eyebrow-text" id="eyebrowText">Joylar tugab qolmoqda</span></span>
+    <span class="eyebrow"><span class="dot"></span>Joylar tugab qolmoqda</span>
     <h1><span class="accent2">Dilbar Zakirova</span> <span class="accent">Irodahocaning</span> Turk tili kurslarini tavsiya qiladi</h1>
 
     <div class="hero__media">
@@ -396,6 +419,19 @@ footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02e
       <span class="txt">Joyimni band qilish</span>
       <span class="cta-timer js-countdown">02:00</span>
     </a>
+
+    <div class="hero__ticker offers-marquee">
+      <div class="offers-track">
+        <span class="offer-item offer-item--amber"><span class="offer-item__icon">📅</span>Haftada 7 kun, 3 ta tajribali ustoz</span><span class="offer-dot">•</span>
+        <span class="offer-item offer-item--tg"><span class="offer-item__icon">🛡️🤖</span>Nazoratchi + Yordamchi AI</span><span class="offer-dot">•</span>
+        <span class="offer-item offer-item--green"><span class="offer-item__icon">🎮</span>Gameifikatsiya tizimi yaxshilangan</span><span class="offer-dot">•</span>
+        <span class="offer-item offer-item--red"><span class="offer-item__icon">💼</span>ERP tizimi ishga tushirilgan</span><span class="offer-dot">•</span>
+        <span class="offer-item offer-item--amber" aria-hidden="true"><span class="offer-item__icon">📅</span>Haftada 7 kun, 3 ta tajribali ustoz</span><span class="offer-dot" aria-hidden="true">•</span>
+        <span class="offer-item offer-item--tg" aria-hidden="true"><span class="offer-item__icon">🛡️🤖</span>Nazoratchi + Yordamchi AI</span><span class="offer-dot" aria-hidden="true">•</span>
+        <span class="offer-item offer-item--green" aria-hidden="true"><span class="offer-item__icon">🎮</span>Gameifikatsiya tizimi yaxshilangan</span><span class="offer-dot" aria-hidden="true">•</span>
+        <span class="offer-item offer-item--red" aria-hidden="true"><span class="offer-item__icon">💼</span>ERP tizimi ishga tushirilgan</span><span class="offer-dot" aria-hidden="true">•</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -508,28 +544,6 @@ footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02e
     });
   }, { threshold: 0 });
   obs.observe(heroCta);
-})();
-
-(function(){
-  var el = document.getElementById('eyebrowText');
-  if (!el) return;
-  var offers = [
-    'Joylar tugab qolmoqda',
-    '100% pul qaytarish kafolati',
-    '10% chegirma',
-    'AI yordamchi 24/7',
-    'Bepul konsultatsiya',
-    'Xalqaro CEFR/TYS sertifikat'
-  ];
-  var idx = 0;
-  setInterval(function(){
-    el.classList.add('is-fading');
-    setTimeout(function(){
-      idx = (idx + 1) % offers.length;
-      el.textContent = offers[idx];
-      el.classList.remove('is-fading');
-    }, 350);
-  }, 2800);
 })();
 
 (function(){
