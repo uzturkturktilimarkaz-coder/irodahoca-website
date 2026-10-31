@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+<link rel="dns-prefetch" href="https://connect.facebook.net">
+<link rel="preconnect" href="https://www.facebook.com">
+<title>UZTURK — Turkiyada talaba bo'lish uchun bepul konsultatsiya</title>
+<meta name="description" content="Turk tili sertifikatini qo'lga kiriting va Turkiyaning nufuzli universitetlarida tahsil olish imkoniyatiga ega bo'ling. Bepul konsultatsiya uchun ro'yxatdan o'ting.">
+<base href="/tg/">
+<link rel="canonical" href="https://irodahoca.uz/tg/landingpage/konsult">
+<link rel="icon" type="image/png" href="./images/favicon.png">
+<link rel="apple-touch-icon" href="./images/logo.png">
+<meta property="og:title" content="UZTURK — Turkiyada talaba bo'lish uchun bepul konsultatsiya">
+<meta property="og:description" content="Turk tili sertifikatini qo'lga kiriting va Turkiyaning nufuzli universitetlarida tahsil olish imkoniyatiga ega bo'ling.">
+<meta property="og:image" content="./images/konsult-hero.webp">
+<meta property="og:type" content="website">
+<link rel="preload" as="image" href="./images/konsult-hero-mobile.webp" fetchpriority="high" media="(max-width:600px)">
+<link rel="preload" as="image" href="./images/konsult-hero.webp" fetchpriority="high" media="(min-width:601px)">
+<link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-800.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="./fonts/manrope-700.woff2" crossorigin>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s);
+}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('set', 'autoConfig', false, '2613961429062390');
+fbq('init', '2613961429062390');
+var __pvId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('pv-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+    fbq('track', 'PageView', {}, { eventID: __pvId });
+    try {
+      var __m = document.cookie.match(/(?:^|; )_fbp=([^;]*)/);
+      var __fbp = __m ? decodeURIComponent(__m[1]) : '';
+      __m = document.cookie.match(/(?:^|; )_fbc=([^;]*)/);
+      var __fbc = __m ? decodeURIComponent(__m[1]) : '';
+      var __payload = JSON.stringify({ event_name: 'PageView', event_id: __pvId, source_url: location.href, fbp: __fbp, fbc: __fbc });
+      if (navigator.sendBeacon) { navigator.sendBeacon('/api/track', new Blob([__payload], { type: 'application/json' })); }
+      else { fetch('/api/track', { method: 'POST', headers: {'Content-Type':'application/json'}, body: __payload, keepalive: true }); }
+    } catch (e) {}
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2613961429062390&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<style>
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-400.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-500.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-700.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url(./fonts/manrope-800.woff2) format('woff2');font-weight:800;font-style:normal;font-display:swap}
+
+:root{
+  --red:#FF4135;
+  --red-text:#CC342A;
+  --green:#1FA22F;
+  --green-text:#188125;
+  --violet:#7C3AED;
+  --violet-dark:#5B21B6;
+  --gold:#D4A017;
+  --navy:#141414;
+  --cream:#F7F4FF;
+  --wrap:600px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Manrope',Arial,sans-serif;
+  color:var(--navy);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+h1,h2{margin:0}
+ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+
+/* ---- CTA button ---- */
+.cta{
+  position:relative;
+  display:inline-flex;width:100%;
+  align-items:center;justify-content:center;gap:10px;
+  padding:17px 24px;border-radius:14px;
+  background:linear-gradient(135deg,var(--violet) 0%,var(--violet-dark) 100%);
+  color:#fff;font-weight:800;font-size:16px;
+  overflow:hidden;isolation:isolate;
+  border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 14px 28px -8px rgb(91 33 182 / .55);
+}
+.cta::after{
+  content:'';position:absolute;top:-40%;left:-30%;width:30%;height:180%;
+  background:linear-gradient(90deg,transparent,rgb(255 255 255 / .55),transparent);
+  transform:translateX(0) skewX(-18deg);
+  animation:sheen 3.2s linear .8s infinite;animation-play-state:paused;z-index:1;
+}
+@keyframes sheen{0%{transform:translateX(0) skewX(-18deg)}55%,100%{transform:translateX(500%) skewX(-18deg)}}
+.cta svg,.cta span.txt{position:relative;z-index:2}
+.cta:disabled{opacity:.6;cursor:default}
+@media (prefers-reduced-motion:reduce){.cta::after{animation:none}}
+
+/* ---- attention wiggle (hero CTA only) ---- */
+.cta--wiggle{margin-top:24px;animation:ctaWiggle 2.6s ease-in-out infinite;animation-play-state:paused}
+@keyframes ctaWiggle{
+  0%,55%,100%{transform:translateY(0) rotate(0deg) scale(1)}
+  62%{transform:translateY(-5px) rotate(-1.5deg) scale(1.03)}
+  69%{transform:translateY(0) rotate(1.5deg) scale(1.03)}
+  76%{transform:translateY(-3px) rotate(-1deg) scale(1.01)}
+  83%{transform:translateY(0) rotate(0deg) scale(1)}
+}
+@media (prefers-reduced-motion:reduce){.cta--wiggle{animation:none}}
+
+/* ---- countdown, baked into the CTA button itself so it can't be missed ---- */
+.cta-timer{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgb(255 255 255 / .22);color:#fff;
+  font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;
+  padding:5px 11px;border-radius:9px;
+  animation:timerPulse 1s ease-in-out infinite;animation-play-state:paused;
+}
+.cta-timer::before{content:'⏳';font-size:13px}
+@keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.cta-timer{animation:none}}
+
+/* ---- lead modal ---- */
+.modal-overlay{
+  position:fixed;inset:0;z-index:100;
+  background:rgb(20 20 20 / .55);
+  display:none;align-items:center;justify-content:center;padding:18px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.modal-overlay.is-open{display:flex;opacity:1;visibility:visible;pointer-events:auto}
+.modal-box{
+  position:relative;background:#fff;border-radius:20px;
+  max-width:420px;width:100%;padding:32px 22px 24px;text-align:center;
+  box-shadow:0 30px 60px -20px rgb(0 0 0 / .4);
+  transform:translateY(16px) scale(.97);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.is-open .modal-box{transform:translateY(0) scale(1)}
+.modal-close{
+  position:absolute;top:10px;right:10px;width:34px;height:34px;border:none;
+  background:rgb(20 20 20 / .06);border-radius:50%;font-size:20px;line-height:1;
+  cursor:pointer;color:var(--navy);
+}
+body.modal-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.modal-overlay,.modal-box{transition:none}}
+
+/* ---- hero ---- */
+.hero{
+  position:relative;padding:18px 0 34px;
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgb(124 58 237 / .5), transparent 62%),
+    radial-gradient(80% 45% at 100% 100%, rgb(212 160 23 / .18), transparent 60%),
+    linear-gradient(160deg,#241046 0%,#0E0620 100%);
+  overflow:hidden;text-align:center;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(rgb(255 255 255 / .35) 1.4px, transparent 1.4px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(70% 55% at 50% 20%, #000 0%, transparent 75%);
+}
+.hero .wrap{position:relative;z-index:1}
+.hero::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:40px;z-index:0;
+  background:linear-gradient(to bottom, transparent, var(--cream));
+  pointer-events:none;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;
+  color:#fff;background:rgb(255 255 255 / .08);border:1px solid rgb(255 255 255 / .16);
+  border-radius:99px;padding:7px 14px 7px 10px;
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:99px;background:var(--gold);position:relative;flex:none}
+.eyebrow .dot::before{content:'';position:absolute;inset:0;border-radius:inherit;background:var(--gold);opacity:.7;animation:ping 1.5s cubic-bezier(0,0,.2,1) infinite;animation-play-state:paused}
+@keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.eyebrow .dot::before{animation:none}}
+.hero h1{
+  margin-top:10px;font-weight:800;font-size:clamp(20px,6vw,30px);line-height:1.18;
+  letter-spacing:-.01em;color:#fff;
+}
+.hero h1 .accent{color:#F3D27A}
+.hero .sub{margin:10px 0 0;color:rgb(255 255 255 / .82);font-weight:600;font-size:15px;line-height:1.5}
+
+.hero__media{position:relative;max-width:320px;margin:18px auto 0}
+.hero__media::before{
+  content:'';position:absolute;z-index:0;inset:-10% -16%;border-radius:50%;
+  background:
+    radial-gradient(58% 58% at 50% 36%, rgb(124 58 237 / 0.42) 0%, rgb(124 58 237 / 0.357) 25%, rgb(124 58 237 / 0.231) 45%, rgb(124 58 237 / 0.118) 62%, rgb(124 58 237 / 0.0) 78%),
+    radial-gradient(52% 52% at 78% 78%, rgb(212 160 23 / 0.3) 0%, rgb(212 160 23 / 0.255) 25%, rgb(212 160 23 / 0.165) 45%, rgb(212 160 23 / 0.084) 62%, rgb(212 160 23 / 0.0) 78%),
+    radial-gradient(50% 50% at 18% 84%, rgb(31 162 47 / 0.22) 0%, rgb(31 162 47 / 0.187) 25%, rgb(31 162 47 / 0.121) 45%, rgb(31 162 47 / 0.062) 62%, rgb(31 162 47 / 0.0) 78%);
+  animation:heroGlowDrift 7s ease-in-out infinite;animation-play-state:paused;
+}
+.hero__media::after{
+  content:'';position:absolute;z-index:0;left:50%;bottom:-3%;
+  width:64%;height:8%;transform:translateX(-50%);
+  background:radial-gradient(50% 50% at 50% 50%, rgb(0 0 0 / .5) 0%, rgb(0 0 0 / .4) 25%, rgb(0 0 0 / .22) 45%, rgb(0 0 0 / .08) 62%, transparent 80%);
+  animation:heroShadowPulse 7s ease-in-out infinite;animation-play-state:paused;
+}
+@keyframes heroGlowDrift{
+  0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}
+  50%{transform:translate(2%,-3%) scale(1.08) rotate(4deg)}
+}
+@keyframes heroShadowPulse{
+  0%,100%{transform:translateX(-50%) scale(1);opacity:.6}
+  50%{transform:translateX(-50%) scale(1.15);opacity:.35}
+}
+@media (prefers-reduced-motion:reduce){.hero__media::before,.hero__media::after{animation:none}}
+.hero__photo{position:relative;z-index:1;border-radius:18px;overflow:hidden;filter:drop-shadow(0 22px 34px rgb(20 20 20 / .32))}
+.hero__photo picture{display:block}
+.hero__photo img{display:block}
+
+.hero__badge{
+  margin-top:20px;display:flex;align-items:center;gap:10px;text-align:left;
+  background:rgb(255 255 255 / .08);border:1px solid rgb(255 255 255 / .16);
+  border-radius:16px;padding:12px 16px;
+}
+.hero__badge .ico{
+  flex:none;width:30px;height:30px;border-radius:50%;
+  background:var(--green);display:flex;align-items:center;justify-content:center;
+}
+.hero__badge p{margin:0;color:#fff;font-weight:700;font-size:13px;line-height:1.4}
+.hero .cta{margin-top:18px}
+
+/* ---- signup (inside modal) ---- */
+.signup__head{text-align:center;margin-bottom:20px}
+.signup__head h2{font-weight:800;font-size:clamp(20px,5vw,26px);text-transform:uppercase;line-height:1.2}
+.signup__head h2 .accent{color:var(--violet-dark)}
+.signup__head p{margin-top:8px;color:#4b4b4b;font-size:14px;line-height:1.5}
+
+.lead-form form{display:flex;flex-direction:column;gap:10px}
+.lead-form input{
+  width:100%;padding:15px 16px;border-radius:12px;
+  border:1.5px solid rgb(20 20 20 / .13);background:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;color:var(--navy);
+}
+.lead-form input::placeholder{font-weight:600;color:rgb(20 20 20 / .38)}
+.lead-form input:focus{outline:none;border-color:var(--violet)}
+.phone-input{display:flex;align-items:stretch;border-radius:12px;border:1.5px solid rgb(20 20 20 / .13);background:#fff;overflow:hidden}
+.phone-input:focus-within{border-color:var(--violet)}
+.phone-input__prefix{display:flex;align-items:center;gap:6px;padding:0 12px;font-weight:800;font-size:15px;color:var(--navy);background:rgb(20 20 20 / .05);border-right:1.5px solid rgb(20 20 20 / .13)}
+.phone-input__flag{font-size:13px}
+.phone-input input{border:none;background:transparent;border-radius:0;width:auto;flex:1;padding:15px 14px 15px 10px}
+.lead-form .msg{margin-top:14px;font-size:14px;font-weight:700;min-height:1.4em;text-align:center}
+.lead-form .msg--ok{color:var(--green-text)}
+.lead-form .msg--err{color:var(--red-text)}
+
+footer{padding:22px 0 30px;text-align:center;background:#fff}
+footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02em}
+
+/* ---- sticky bottom bar (mobile) — persistent CTA while scrolling ---- */
+.stickybar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:#fff;
+  border-top:1px solid rgb(20 20 20 / .08);
+  box-shadow:0 -8px 20px -6px rgb(20 20 20 / .12);
+  display:none;
+  align-items:center;gap:10px;
+  transform:translateY(100%);
+  transition:transform .3s ease;
+}
+.stickybar .cta{margin-top:0;flex:1 1 auto}
+@media (prefers-reduced-motion:reduce){.stickybar{transition:none}}
+@media (max-width:760px){
+  .stickybar{display:flex}
+  .stickybar.is-visible{transform:translateY(0)}
+  body.has-stickybar{padding-bottom:74px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Turkiyada tahsil</span>
+    <h1>Turkiyada talaba bo'lishni <span class="accent">orzu qilasizmi?</span></h1>
+    <p class="sub">Turk tili sertifikatini qo'lga kiriting va Turkiyaning nufuzli universitetlarida tahsil olish imkoniyatiga ega bo'ling!</p>
+
+    <div class="hero__media">
+      <div class="hero__photo">
+        <picture>
+          <source media="(max-width:600px)" srcset="./images/konsult-hero-mobile.webp" type="image/webp">
+          <img src="./images/konsult-hero.webp" alt="Turkiyada tahsil olayotgan talaba" fetchpriority="high" width="1080" height="1290" class="js-fade-in" onload="this.classList.add('is-loaded')">
+        </picture>
+      </div>
+    </div>
+
+    <div class="hero__badge">
+      <span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <p>To'liq kursni muvaffaqiyatli yakunlagan o'quvchilar uchun natija kafolati</p>
+    </div>
+
+    <a class="cta cta--wiggle js-open-modal" href="/tg/landingpage/konsult#signup">
+      <svg aria-hidden="true" focusable="false" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+      <span class="txt">Hoziroq ro'yxatdan o'ting</span>
+    </a>
+  </div>
+</section>
+
+<div class="modal-overlay" id="leadModalOverlay">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+    <button type="button" class="modal-close" id="leadModalClose" aria-label="Yopish">&times;</button>
+    <div class="signup__head">
+      <h2 id="leadModalTitle">Bepul <span class="accent">konsultatsiyaga</span> yoziling</h2>
+      <p>Ism familiyangiz va telefon raqamingizni qoldiring — o'zimiz siz bilan bog'lanamiz.</p>
+    </div>
+    <div class="lead-form">
+      <form id="leadForm" novalidate>
+        <input type="text" name="name" id="leadName" placeholder="Ism familiyangiz" autocomplete="name" required>
+        <div class="phone-input">
+          <span class="phone-input__prefix"><span class="phone-input__flag">🇺🇿</span>+998</span>
+          <input type="tel" inputmode="numeric" name="phone" id="leadPhone" placeholder="90 123 45 67" autocomplete="tel" maxlength="9" required>
+        </div>
+        <button type="submit" class="cta">
+          <span class="txt">Ro'yxatdan o'tish</span>
+        </button>
+        <p class="msg" id="leadMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 UZTURK — Turk tilini onlayn va offlayn o'rgatuvchi o'quv markazi</p>
+</footer>
+
+<div class="stickybar">
+  <a class="cta js-open-modal" href="/tg/landingpage/konsult#signup">
+    <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.05 3.64 2.98 10.6c-1.23.49-1.22 1.17-.22 1.48l4.64 1.45 1.79 5.48c.22.6.36.84.75.84.37 0 .53-.17.73-.37l1.78-1.73 4.68 3.46c.86.48 1.48.23 1.7-.8l3.07-14.5c.32-1.26-.47-1.83-1.85-1.27Z" fill="#fff"/></svg>
+    <span class="txt">Hoziroq ro'yxatdan o'ting</span>
+  </a>
+</div>
+
+<script>
+(function(){
+  var overlay = document.getElementById('leadModalOverlay');
+  var closeBtn = document.getElementById('leadModalClose');
+  var openers = document.querySelectorAll('.js-open-modal');
+  if (!overlay || !openers.length) return;
+
+  function openModal(e){
+    if (e) e.preventDefault();
+    overlay.classList.add('is-open');
+    document.body.classList.add('modal-open');
+  }
+  function closeModal(){
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('modal-open');
+  }
+
+  openers.forEach(function(el){ el.addEventListener('click', openModal); });
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+})();
+
+(function(){
+  var heroCta = document.querySelector('.hero .cta');
+  var stickybar = document.querySelector('.stickybar');
+  if (!heroCta || !stickybar || !('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      stickybar.classList.toggle('is-visible', !entry.isIntersecting);
+      document.body.classList.toggle('has-stickybar', !entry.isIntersecting);
+    });
+  }, { threshold: 0 });
+  obs.observe(heroCta);
+})();
+
+var leadForm = document.getElementById('leadForm');
+if (leadForm) {
+  var phoneDigitsEl = document.getElementById('leadPhone');
+  phoneDigitsEl.addEventListener('input', function(){
+    phoneDigitsEl.value = phoneDigitsEl.value.replace(/\D/g, '').slice(0, 9);
+  });
+
+  leadForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var msgEl = document.getElementById('leadMsg');
+    var nameEl = document.getElementById('leadName');
+    var btn = leadForm.querySelector('button[type="submit"]');
+    var name = nameEl.value.trim();
+    var phoneDigits = phoneDigitsEl.value.replace(/\D/g, '');
+
+    msgEl.textContent = '';
+    msgEl.className = 'msg';
+
+    if (name.length < 2) {
+      msgEl.textContent = 'Iltimos, ism familiyangizni kiriting.';
+      msgEl.className = 'msg msg--err';
+      nameEl.focus();
+      return;
+    }
+    if (phoneDigits.length !== 9) {
+      msgEl.textContent = 'Iltimos, telefon raqamingizni to\'liq kiriting (9 ta raqam).';
+      msgEl.className = 'msg msg--err';
+      phoneDigitsEl.focus();
+      return;
+    }
+
+    var phone = '+998' + phoneDigits;
+    btn.disabled = true;
+
+    var eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('e-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+
+    try {
+      var fbCookie = function(n){ var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; };
+      var adParams = new URLSearchParams(window.location.search);
+      var fbCampaignId = adParams.get('campaign_id') || adParams.get('utm_campaign') || '';
+      var fbAdsetId = adParams.get('adset_id') || adParams.get('utm_term') || '';
+      var fbAdId = adParams.get('ad_id') || adParams.get('utm_content') || '';
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, phone: phone, source: 'tg-landingpage-konsult', event_id: eventId, source_url: window.location.href, fbp: fbCookie('_fbp'), fbc: fbCookie('_fbc'), campaign_id: fbCampaignId, adset_id: fbAdsetId, ad_id: fbAdId }),
+        keepalive: true
+      }).catch(function(){});
+    } catch (err) {}
+
+    if (typeof fbq === 'function') {
+      try { fbq('trackSingle', '2613961429062390', 'Lead', { content_name: 'tg-landingpage-konsult-form' }, { eventID: eventId }); }
+      catch (err) { try { fbq('track', 'Lead', { content_name: 'tg-landingpage-konsult-form' }, { eventID: eventId }); } catch (err2) {} }
+    }
+    window.location.href = '/tg/rahmat/';
+  });
+}
+</script>
+</body>
+</html>
