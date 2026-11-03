@@ -410,6 +410,12 @@ if (leadForm) {
 
     var phone = '+998' + phoneDigits;
     btn.disabled = true;
+    // Takroriy ariza himoyasi (2026-11-03): shu brauzerdan shu raqam 7 kun
+    // ichida yuborilgan bo'lsa — qayta jo'natmaymiz, darhol rahmat sahifasi.
+    try {
+      var __sent = JSON.parse(localStorage.getItem('uz_lead_sent') || 'null');
+      if (__sent && __sent.p === phone && Date.now() - __sent.t < 7 * 864e5) { window.location.href = '/tg/rahmat/'; return; }
+    } catch (err) {}
 
     var eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('e-' + Date.now() + '-' + Math.random().toString(16).slice(2));
 
@@ -425,6 +431,7 @@ if (leadForm) {
         body: JSON.stringify({ name: name, phone: phone, source: 'tg-landingpage-konsult', event_id: eventId, source_url: window.location.href, fbp: fbCookie('_fbp'), fbc: fbCookie('_fbc'), campaign_id: fbCampaignId, adset_id: fbAdsetId, ad_id: fbAdId }),
         keepalive: true
       }).catch(function(){});
+      try { localStorage.setItem('uz_lead_sent', JSON.stringify({ p: phone, t: Date.now() })); } catch (err) {}
     } catch (err) {}
 
     if (typeof fbq === 'function') {
