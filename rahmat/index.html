@@ -201,6 +201,21 @@ a{text-decoration:none;color:inherit}
   50%{box-shadow:0 14px 34px -6px rgb(34 158 217 / .85)}
 }
 @media (prefers-reduced-motion:reduce){.cta{animation:none}.cta::after{animation:none}}
+/* Ixcham ko'rinish (2026-11-04): telefonda tugma birinchi ekranda to'liq
+   ko'rinsin — UZTURK yozuvi va pastga strelka olib tashlandi, belgi
+   kichraytirildi, bo'shliqlar qisqartirildi. */
+body{justify-content:flex-start;padding:16px 16px 28px}
+@media (min-height:760px){body{justify-content:center}}
+.card{padding:26px 20px 24px}
+.check-wrap{width:52px;height:52px;margin:0 auto 12px}
+.check{width:52px;height:52px;box-shadow:0 8px 18px -8px rgb(31 162 47 / .5)}
+.card h1{font-size:clamp(20px,5.4vw,26px)}
+.card p.sub{margin-top:8px;font-size:14.5px;line-height:1.5}
+.fast{margin-top:16px;padding-top:16px}
+.fast p{margin:0 0 10px;font-size:14.5px}
+.gifts{margin:0 0 14px;gap:6px}
+.gifts li{padding:9px 11px;font-size:13.5px;line-height:1.4}
+.cta{padding:15px 20px;box-shadow:0 8px 18px -8px rgb(34 158 217 / .6);animation:none}
 </style>
 </head>
 <body>
@@ -210,20 +225,16 @@ a{text-decoration:none;color:inherit}
 <div class="blob blob--2"></div>
 <div class="blob blob--3"></div>
 
-<div class="brand">Uz<span>turk</span></div>
 
 <div class="card">
   <div class="check-wrap">
     <div class="check">
-      <svg width="38" height="38" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
   </div>
   <h1>Rahmat! Arizangiz qabul qilindi</h1>
   <p class="sub">Tez orada mutaxassislarimiz siz bilan <b class="ph">55 055 08 07</b> raqamidan bog'lanadi va barcha savollaringizga javob beradi.</p>
   <div class="fast">
-    <div class="fast__arrow">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 4v15M12 19l-6-6M12 19l6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
     <p>Hoziroq Telegram botimizga o'ting va bepul oling:</p>
     <ul class="gifts">
       <li><span class="gi">🎬</span><span><b>2 ta bepul dars</b> — kursimiz qanday o'tishini o'zingiz ko'ring</span></li>
