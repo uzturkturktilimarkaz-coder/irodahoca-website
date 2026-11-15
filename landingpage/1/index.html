@@ -452,7 +452,7 @@ footer p{margin:0;font-size:11.5px;color:rgb(20 20 20 / .62);letter-spacing:.02e
         <input type="text" name="name" id="leadName" placeholder="Ism familiyangiz" autocomplete="name" required>
         <div class="phone-input">
           <span class="phone-input__prefix"><span class="phone-input__flag">🇺🇿</span>+998</span>
-          <input type="tel" inputmode="numeric" name="phone" id="leadPhone" placeholder="90 123 45 67" autocomplete="tel" maxlength="9" required>
+          <input type="tel" inputmode="numeric" name="phone" id="leadPhone" placeholder="90 123 45 67" autocomplete="tel" maxlength="17" required>
         </div>
         <button type="submit" class="cta">
           <span class="txt">Ro'yxatdan o'tish</span>
@@ -532,7 +532,7 @@ var leadForm = document.getElementById('leadForm');
 if (leadForm) {
   var phoneDigitsEl = document.getElementById('leadPhone');
   phoneDigitsEl.addEventListener('input', function(){
-    phoneDigitsEl.value = phoneDigitsEl.value.replace(/\D/g, '').slice(0, 9);
+    var __pd = phoneDigitsEl.value.replace(/\D/g, ''); if (__pd.length > 9 && __pd.indexOf('998') === 0) __pd = __pd.slice(3); phoneDigitsEl.value = __pd.slice(0, 9);
   });
 
   leadForm.addEventListener('submit', function(e){
