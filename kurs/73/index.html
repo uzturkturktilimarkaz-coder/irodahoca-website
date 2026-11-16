@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<!-- Shablon: scripts/build-kurs.mjs shu fayldan /kurs/<slug>/index.html yasaydi.
+     Dizayn webinar sahifalari bilan bitta tizimda: static-webinar/styles.css
+     + static-kurs/extra.css. -->
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- LCP rasm/shrift — pixel scriptidan OLDIN -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/kurs/img/webinar-1-studio-566.webp"
+      imagesrcset="/kurs/img/webinar-1-studio-283.webp 283w, /kurs/img/webinar-1-studio-425.webp 425w, /kurs/img/webinar-1-studio-495.webp 495w, /kurs/img/webinar-1-studio-566.webp 566w"
+      imagesizes="(min-width: 331px) 283px, calc(90vw - 14px)"
+      fetchpriority="high"
+    />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
+    <link rel="preconnect" href="https://www.facebook.com" />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    <!-- Meta Pixel -->
+    <script>/**
+ * Meta Pixel bootstrap — static webinar sahifalari uchun (template.html + template-b.html).
+ *
+ * Maqsad: PageView DARHOL ketsin (Visit rate), lekin fbevents.js LCP ni bloklamasin.
+ *
+ *   1) PageView — 1x1 beacon (https://www.facebook.com/tr/). JS yuklanmaydi,
+ *      main thread band bo'lmaydi, sahifa ochilishi bilan Metaga yetadi.
+ *   2) fbevents.js — birinchi harakatdan keyin (yoki 8s idle). U faqat Lead
+ *      uchun kerak; modal ochilganda app.js darhol chaqiradi.
+ *   3) PageView fbq orqali TAKROR yuborilmaydi — beacon allaqachon hisoblangan.
+ *
+ * Xavfsizlik tarmog'i: server CAPI ham xuddi shu event_id bilan PageView/Lead
+ * yuboradi (server/index.js), shuning uchun beacon to'silsa ham event yo'qolmaydi.
+ */
+;(function () {
+  var PIXEL_ID = '2613961429062390'
+  window.__IRODA_WEBINAR_PIXEL_ID__ = PIXEL_ID
+  var path = location.pathname || ''
+  var testCode = ''
+  try {
+    var params = new URLSearchParams(location.search || '')
+    testCode = (params.get('test_event_code') || '').trim()
+    if (testCode) window.__IRODA_TEST_EVENT_CODE__ = testCode
+  } catch (e) {}
+
+  function irodaGenId() {
+    try {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID()
+    } catch (e) {}
+    return 'pv-' + Date.now() + '-' + Math.random().toString(16).slice(2)
+  }
+  var pvEventId = irodaGenId()
+  window.__IRODA_PV_EVENT_ID__ = pvEventId
+
+  window.__IRODA_EARLY_PV__ = path
+  window.__IRODA_PV_DONE__ = window.__IRODA_PV_DONE__ || {}
+  window.__IRODA_PV_DONE__[path] = 1
+  try {
+    sessionStorage.setItem('irodahoca_pv_' + path, '1')
+    sessionStorage.setItem('irodahoca_webinar_source', 'kurs-73')
+  } catch (e) {}
+
+  // Meta: _fbc / _fbp qiymatlari case-sensitive — decode/normalize QILINMAYDI.
+  function irodaReadCookie(name) {
+    try {
+      var m = document.cookie.match(
+        '(?:^|; )' +
+          name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') +
+          '=([^;]*)',
+      )
+      return m ? m[1] : ''
+    } catch (e) {
+      return ''
+    }
+  }
+  function irodaWriteCookie(name, value) {
+    try {
+      document.cookie =
+        name +
+        '=' +
+        value +
+        '; Max-Age=7776000; Path=/; SameSite=Lax' +
+        (location.protocol === 'https:' ? '; Secure' : '')
+    } catch (e) {}
+  }
+
+  // fbp/fbc — fbevents.js dan oldin o'zimiz yozamiz, beacon ularni olib ketadi.
+  ;(function ensureMetaCookies() {
+    var fbp = irodaReadCookie('_fbp')
+    if (!/^fb\.\d\.\d{10,}\.\d+/.test(fbp)) {
+      var idx = location.hostname.split('.').length - 1
+      if (idx < 1) idx = 1
+      irodaWriteCookie(
+        '_fbp',
+        'fb.' +
+          idx +
+          '.' +
+          Date.now() +
+          '.' +
+          String(Math.floor(Math.random() * 2147483646) + 1),
+      )
+    }
+    var fbc = irodaReadCookie('_fbc')
+    var fbclid = ''
+    try {
+      var query = String(location.search || '').replace(/^\?/, '')
+      var parts = query.split('&')
+      for (var i = 0; i < parts.length; i++) {
+        var eq = parts[i].indexOf('=')
+        if (eq > 0 && parts[i].slice(0, eq) === 'fbclid') {
+          fbclid = parts[i].slice(eq + 1)
+          break
+        }
+      }
+    } catch (e) {}
+    var clickFromCookie = String(fbc || '').split('.')[3] || ''
+    if (
+      fbclid &&
+      /^[A-Za-z0-9_-]+$/.test(fbclid) &&
+      clickFromCookie !== fbclid
+    ) {
+      irodaWriteCookie('_fbc', 'fb.1.' + Date.now() + '.' + fbclid)
+    }
+  })()
+
+  /* ---- 1) PageView beacon — sahifa ochilishi bilan, 0 ms main thread ---- */
+  ;(function irodaPageViewBeacon() {
+    try {
+      var q = [
+        'id=' + encodeURIComponent(PIXEL_ID),
+        'ev=PageView',
+        'dl=' + encodeURIComponent(location.href),
+        'rl=' + encodeURIComponent(document.referrer || ''),
+        'if=false',
+        'ts=' + Date.now(),
+        'sw=' + (screen && screen.width ? screen.width : 0),
+        'sh=' + (screen && screen.height ? screen.height : 0),
+        'eid=' + encodeURIComponent(pvEventId),
+      ]
+      // fbp/fbc birinchi tomon cookie — facebook.com so'roviga o'zimiz qo'shamiz
+      var fbp = irodaReadCookie('_fbp')
+      if (fbp) q.push('fbp=' + fbp)
+      var fbc = irodaReadCookie('_fbc')
+      if (fbc) q.push('fbc=' + fbc)
+      if (testCode) q.push('test_event_code=' + encodeURIComponent(testCode))
+
+      var px = new Image(1, 1)
+      px.referrerPolicy = 'no-referrer-when-downgrade'
+      px.src = 'https://www.facebook.com/tr/?' + q.join('&')
+      window.__IRODA_PV_BEACON__ = 1
+    } catch (e) {}
+  })()
+
+  /* ---- 2) fbq stub — chaqiruvlar navbatga tushadi (PageView bundan tashqari) ---- */
+  !(function (f, b, e, v, n, t, s) {
+    if (f.fbq) return
+    n = f.fbq = function () {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+    }
+    if (!f._fbq) f._fbq = n
+    n.push = n
+    n.loaded = !0
+    n.version = '2.0'
+    n.queue = []
+  })(window, document, 'script')
+
+  fbq.disablePushState = true
+  fbq('set', 'autoConfig', false, PIXEL_ID)
+  fbq('init', PIXEL_ID)
+  window.__IRODA_PIXEL_INITED__ = PIXEL_ID
+
+  /* ---- 3) fbevents.js — LCP dan keyin (harakat / idle / Lead oldidan) ---- */
+  var fbevScheduled = false
+  function irodaLoadFbevents() {
+    if (fbevScheduled) return
+    fbevScheduled = true
+    var t = document.createElement('script')
+    t.async = true
+    t.src = 'https://connect.facebook.net/en_US/fbevents.js'
+    var s = document.getElementsByTagName('script')[0]
+    if (s && s.parentNode) s.parentNode.insertBefore(t, s)
+    else document.head.appendChild(t)
+  }
+  // app.js modal ochilganda darhol chaqiradi — Lead kafolatlangan
+  window.__IRODA_LOAD_FBEVENTS__ = irodaLoadFbevents
+
+  var IDLE_MS = 8000
+  var events = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'mousemove']
+  function onFirstInteraction() {
+    for (var i = 0; i < events.length; i++) {
+      window.removeEventListener(events[i], onFirstInteraction, true)
+    }
+    irodaLoadFbevents()
+  }
+  for (var i = 0; i < events.length; i++) {
+    window.addEventListener(events[i], onFirstInteraction, {
+      once: true,
+      passive: true,
+      capture: true,
+    })
+  }
+  setTimeout(irodaLoadFbevents, IDLE_MS)
+})()
+</script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=2613961429062390&ev=PageView&noscript=1" /></noscript>
+    <!-- Server-side PageView (CAPI) — brauzer eventi bilan bir xil event_id, dedup -->
+    <script>(function(){try{var c=function(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):''};
+    var b=JSON.stringify({event_name:'PageView',event_id:window.__IRODA_PV_EVENT_ID__||'',source:'kurs-73',source_url:location.href,fbp:c('_fbp'),fbc:c('_fbc')});
+    if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}))}
+    else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true})}}catch(e){}})();</script>
+
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://irodahoca.uz/kurs/eng-ideal-sertifikat-ai-kursi/" />
+    <meta name="description" content="O‘zbekistondagi eng ideal “100% sertifikat + AI” onlayn turk tili kursi: shaxsiy AI yordamchi, 3 ta ustoz, B2 sertifikat kafolati." />
+    <meta
+      name="facebook-domain-verification"
+      content="kvcz5alci1v8my9rq40hobk7xcbum8"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://irodahoca.uz/kurs/eng-ideal-sertifikat-ai-kursi/" />
+    <meta property="og:title" content="Sun’iy intellektli turk tili kursi — 100% sertifikat kafolati | UZTURK" />
+    <meta property="og:description" content="O‘zbekistondagi eng ideal “100% sertifikat + AI” onlayn turk tili kursi: shaxsiy AI yordamchi, 3 ta ustoz, B2 sertifikat kafolati." />
+    <meta property="og:image" content="https://irodahoca.uz/images/logo.png" />
+    <title>Sun’iy intellektli turk tili kursi — 100% sertifikat kafolati | UZTURK</title>
+
+    <style>
+@font-face {
+font-family: 'Outfit';
+src: url('/fonts/outfit/Outfit-latin.woff2') format('woff2');
+font-weight: 400 700;
+font-style: normal;
+font-display: optional;
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+font-family: 'Outfit';
+src: url('/fonts/outfit/Outfit-latin-ext.woff2') format('woff2');
+font-weight: 400 700;
+font-style: normal;
+font-display: optional;
+unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+font-family: 'Outfit Fallback Android';
+src: local('Roboto'), local('Roboto Regular');
+size-adjust: 101.53%;
+ascent-override: 98.50%;
+descent-override: 25.61%;
+line-gap-override: 0%;
+}
+@font-face {
+font-family: 'Outfit Fallback';
+src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+size-adjust: 98.44%;
+ascent-override: 101.59%;
+descent-override: 26.41%;
+line-gap-override: 0%;
+}*,*::before,*::after{
+box-sizing: border-box;
+}html,body{
+margin: 0;
+padding: 0;
+background: var(--page-bg, #f3ede4);
+font-family: 'Outfit', 'Outfit Fallback Android', 'Outfit Fallback', sans-serif;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}button,input{
+font: inherit;
+}img{
+max-width: 100%;
+display: block;
+}.page{
+position: relative;
+overflow-x: hidden;
+background:
+radial-gradient(120% 52% at 50% -10%, color-mix(in srgb, var(--accent) 38%, transparent), transparent 60%),
+radial-gradient(80% 42% at 100% 100%, color-mix(in srgb, var(--note-bg) 42%, transparent), transparent 58%),
+var(--page-bg);
+}.wrap{
+position: relative;
+width: 100%;
+max-width: 28rem;
+margin: 0 auto;
+}.top{
+display: flex;
+flex-direction: column;
+}.live-dot{
+position: relative;
+width: 8px;
+height: 8px;
+flex-shrink: 0;
+border-radius: 9999px;
+background: #fff;
+}.live-dot::before{
+content: '';
+position: absolute;
+inset: 0;
+border-radius: inherit;
+background: #fff;
+opacity: 0.7;
+animation: livePing 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}.hero{
+position: relative;
+height: 460px;
+overflow: visible;
+contain: layout paint;
+}.hero::before{
+content: '';
+pointer-events: none;
+position: absolute;
+left: 50%;
+top: 14%;
+z-index: 0;
+width: 280px;
+height: 280px;
+transform: translateX(-50%);
+border-radius: 9999px;
+background: radial-gradient(
+circle at 50% 42%,
+color-mix(in srgb, var(--accent) 38%, transparent),
+color-mix(in srgb, var(--accent) 12%, transparent) 58%,
+transparent 74%
+);
+animation: aGlow 4.2s ease-in-out infinite;
+}@media (min-width: 640px){.hero{
+height: 500px;
+}}.hero-img-wrap{
+position: absolute;
+left: 0;
+right: 0;
+top: 0.5rem;
+bottom: 6rem;
+z-index: 1;
+display: flex;
+align-items: flex-end;
+justify-content: center;
+overflow: hidden;
+padding: 0 0.5rem;
+}.hero-img-wrap img{
+height: 100%;
+width: auto;
+max-width: 90%;
+object-fit: contain;
+object-position: center bottom;
+filter: drop-shadow(0 18px 28px rgba(15, 23, 42, 0.28));
+contain: layout;
+}.badge{
+position: absolute;
+z-index: 10;
+display: inline-flex;
+align-items: center;
+gap: 0.375rem;
+border-radius: 9999px;
+background: rgba(255, 255, 255, 0.95);
+padding: 0.375rem 0.625rem;
+box-shadow:
+0 8px 22px -6px rgba(15, 23, 42, 0.22),
+0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent),
+0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
+will-change: transform;
+animation: badgeFloat 4s ease-in-out infinite;
+}.badge.left{
+left: 0.625rem;
+}.badge.right{
+right: 0.625rem;
+}.badge.d1{
+animation-delay: 0s;
+}.badge.d2{
+animation-delay: 0.7s;
+}.badge.d3{
+animation-delay: 1.2s;
+}.badge-icon{
+display: flex;
+width: 1rem;
+height: 1rem;
+align-items: center;
+justify-content: center;
+border-radius: 9999px;
+background: var(--accent);
+color: #fff;
+flex-shrink: 0;
+}.badge-icon svg{
+width: 0.625rem;
+height: 0.625rem;
+}.badge span.txt{
+white-space: nowrap;
+font-size: 10px;
+font-weight: 800;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+color: #1e293b;
+}.hero-fade{
+pointer-events: none;
+position: absolute;
+inset: auto 0 0 0;
+z-index: 10;
+height: 11rem;
+background: linear-gradient(to top, var(--page-bg) 55%, transparent);
+}.hero-cta{
+position: absolute;
+inset: auto 0 2rem 0;
+z-index: 20;
+display: flex;
+flex-direction: column;
+gap: 15px;
+padding: 0 1.25rem;
+}.name-stack{
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+}.badge.badge-c1{
+position: relative;
+left: auto;
+right: auto;
+top: auto;
+}.name-pill{
+display: flex;
+justify-content: center;
+}.name-pill span{
+display: inline-block;
+border-radius: 0.375rem;
+background: rgba(255, 255, 255, 0.95);
+padding: 0.375rem 0.75rem;
+font-size: 15px;
+font-weight: 800;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+color: #0f172a;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+border: 1px solid rgba(0, 0, 0, 0.05);
+}.gift-wrap{
+position: relative;
+z-index: 20;
+margin-top: -17px;
+padding: 0 0.875rem;
+}.bottom{
+padding: 0 0.875rem 2.5rem;
+}.urgency{
+margin-top: 1.25rem;
+border-radius: 1.5rem;
+background: #020617;
+padding: 1.5rem 1rem;
+text-align: center;
+box-shadow:
+0 18px 40px -18px color-mix(in srgb, var(--accent) 60%, transparent),
+inset 0 1px 0 color-mix(in srgb, var(--accent) 28%, transparent);
+}.urgency-pill{
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+border-radius: 9999px;
+padding: 0.375rem 0.875rem;
+margin-bottom: 0.75rem;
+font-size: clamp(13px, 3.6vw, 16px);
+font-weight: 800;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+color: var(--note-bg);
+background: color-mix(in srgb, var(--accent) 20%, transparent);
+box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent);
+}.modal{
+position: fixed;
+inset: 0;
+z-index: 50;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 1rem;
+background: rgba(0, 0, 0, 0.55);
+}.modal[hidden]{
+display: none !important;
+}.modal-card{
+position: relative;
+width: 100%;
+max-width: 380px;
+overflow: hidden;
+border-radius: 1rem;
+background: linear-gradient(165deg, #fff 0%, #fbf7f1 55%, #f4eee6 100%);
+box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}.modal-bar{
+position: absolute;
+inset: 0 0 auto 0;
+height: 4px;
+background: linear-gradient(90deg, #dc2626 0%, #f59e0b 100%);
+}.modal-body{
+padding: 1.25rem 1.5rem 1.5rem;
+}.modal-head{
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 0.75rem;
+margin-bottom: 1.25rem;
+}.modal-head h2{
+margin: 0;
+font-size: 26px;
+font-weight: 600;
+letter-spacing: 0.02em;
+color: #0f172a;
+}.modal-head p{
+margin: 0.375rem 0 0;
+font-size: 13.5px;
+color: #64748b;
+}.modal-close{
+display: flex;
+width: 2.25rem;
+height: 2.25rem;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+border: 0;
+border-radius: 9999px;
+background: rgba(0, 0, 0, 0.04);
+color: #64748b;
+cursor: pointer;
+}.phone-row{
+display: flex;
+align-items: center;
+overflow: hidden;
+border-radius: 0.75rem;
+border: 1px solid rgba(0, 0, 0, 0.1);
+background: #fff;
+}.phone-prefix{
+flex-shrink: 0;
+border-right: 1px solid rgba(0, 0, 0, 0.08);
+background: rgba(0, 0, 0, 0.02);
+padding: 0.875rem;
+font-size: 17px;
+font-weight: 600;
+color: #334155;
+}.phone-row input{
+min-width: 0;
+flex: 1;
+border: 0;
+outline: none;
+background: transparent;
+padding: 0.875rem;
+font-size: 17px;
+font-weight: 600;
+color: #0f172a;
+}.phone-row input::placeholder{
+font-weight: 400;
+color: #94a3b8;
+}.form-error{
+margin: 0.5rem 0 0;
+border-radius: 0.5rem;
+background: #fef2f2;
+padding: 0.5rem 0.75rem;
+font-size: 14px;
+color: #dc2626;
+}.form-error[hidden]{
+display: none !important;
+}.submit{
+margin-top: 1.25rem;
+display: flex;
+width: 100%;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+border: 0;
+border-radius: 0.75rem;
+padding: 0.875rem 1rem;
+background: #dc2626;
+color: #fff;
+font-size: 17px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+cursor: pointer;
+box-shadow: 0 10px 28px -6px rgba(185, 28, 28, 0.55);
+}.submit:disabled{
+opacity: 0.75;
+cursor: wait;
+}
+@keyframes livePing {
+75%,
+100% {
+transform: scale(2);
+opacity: 0;
+}
+}
+@keyframes badgeFloat {
+0%,
+100% {
+transform: translate3d(0, 0, 0);
+}
+50% {
+transform: translate3d(0, -8px, 0);
+}
+}
+@keyframes giftBounce {
+0%,
+100% {
+transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+}
+25% {
+transform: translate3d(0, -3px, 0) rotate(-6deg) scale(1.06);
+}
+50% {
+transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+}
+75% {
+transform: translate3d(0, -2px, 0) rotate(6deg) scale(1.06);
+}
+}
+@keyframes shineSweep {
+0% {
+transform: translateX(-130%) skewX(-18deg);
+}
+32%,
+100% {
+transform: translateX(160%) skewX(-18deg);
+}
+}
+@keyframes aGlow {
+0%,
+100% {
+opacity: 0.85;
+transform: translateX(-50%) scale(1);
+}
+50% {
+opacity: 1;
+transform: translateX(-50%) scale(1.08);
+}
+}
+@keyframes headlineLive {
+0%,
+100% {
+transform: scale(1);
+box-shadow:
+0 0 0 1.5px color-mix(in srgb, var(--accent) 35%, transparent),
+0 4px 16px -4px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+50% {
+transform: scale(1.015);
+box-shadow:
+0 0 0 3px color-mix(in srgb, var(--accent) 65%, transparent),
+0 0 28px 2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+}
+@keyframes ctaPress {
+0%,
+58%,
+100% {
+transform: translateZ(0) scale(1);
+box-shadow: 0 10px 28px -6px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+7% {
+transform: translateZ(0) scale(1.03);
+box-shadow: 0 12px 28px -4px color-mix(in srgb, var(--accent) 62%, transparent);
+}
+14% {
+transform: translateZ(0) scale(0.97);
+box-shadow: 0 4px 10px -2px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+22% {
+transform: translateZ(0) scale(1.04);
+box-shadow: 0 14px 30px -4px color-mix(in srgb, var(--accent) 65%, transparent);
+}
+30% {
+transform: translateZ(0) scale(1);
+box-shadow: 0 10px 28px -6px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+}
+@keyframes ctaAura {
+0% {
+transform: translateZ(0) scale(1);
+opacity: 0.7;
+box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);
+}
+70%,
+100% {
+transform: translateZ(0) scale(1.04);
+opacity: 0;
+box-shadow: 0 0 0 12px transparent;
+}
+}
+@keyframes ctaAuraSoft {
+0% {
+transform: translateZ(0) scale(1);
+opacity: 0.45;
+box-shadow: 0 0 10px 2px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+60%,
+100% {
+transform: translateZ(0) scale(1.06);
+opacity: 0;
+box-shadow: 0 0 18px 6px transparent;
+}
+}@media (prefers-reduced-motion: reduce){.live-dot::before,.badge,.hero::before,.a-cta-sheen::after,.a-cta.is-pulse{
+animation: none !important;
+}}.a-page{
+background:
+radial-gradient(120% 48% at 50% -8%, color-mix(in srgb, var(--w-accent) 42%, transparent), transparent 58%),
+radial-gradient(70% 38% at 100% 100%, color-mix(in srgb, var(--w-note) 38%, transparent), transparent 55%),
+var(--w-page, #fff4d4);
+color: #0f172a;
+font-family: 'Outfit', 'Outfit Fallback Android', 'Outfit Fallback', sans-serif;
+}.a-head{
+padding: 0.9rem 0.5rem 0.4rem;
+text-align: center;
+}.a-headline{
+margin: 0.5rem 0 0.8rem;
+font-size: clamp(24px, 7vw, 31px);
+font-weight: 800;
+line-height: 1.18;
+letter-spacing: -0.03em;
+color: #0f172a;
+text-wrap: balance;
+}.a-hl{
+color: inherit;
+padding: 0 0.06em;
+background-image: linear-gradient(
+to right,
+color-mix(in srgb, var(--w-accent) 85%, transparent),
+color-mix(in srgb, var(--w-accent) 40%, transparent)
+);
+background-repeat: no-repeat;
+background-size: 100% 0.42em;
+background-position: 0 88%;
+box-decoration-break: clone;
+-webkit-box-decoration-break: clone;
+}.a-name{
+display: inline-block;
+border-radius: 9999px;
+background: rgba(255, 255, 255, 0.95);
+padding: 0.4rem 0.9rem;
+font-size: 14.5px;
+font-weight: 800;
+letter-spacing: 0.02em;
+color: #0f172a;
+box-shadow:
+0 8px 20px -8px rgba(15, 23, 42, 0.25),
+0 0 0 1px color-mix(in srgb, var(--w-accent) 18%, transparent);
+}.a-cta{
+position: relative;
+display: flex;
+width: 100%;
+align-items: center;
+gap: 0.55rem;
+overflow: hidden;
+border: 0;
+border-radius: 16px;
+padding: 0.88rem 0.85rem;
+font-family: inherit;
+font-size: clamp(18px, 5.2vw, 22px);
+font-weight: 800;
+color: #fff;
+cursor: pointer;
+background: linear-gradient(
+100deg,
+var(--w-accent),
+color-mix(in srgb, var(--w-accent) 62%, #111)
+);
+box-shadow: 0 14px 32px -12px color-mix(in srgb, var(--w-accent) 85%, transparent);
+}.a-cta:active{
+transform: translateY(1px);
+}.a-cta.is-pulse{
+will-change: transform;
+animation: aCtaPulse 2.4s ease-in-out infinite;
+}.a-cta.is-pulse:active{
+transform: none;
+filter: brightness(0.92);
+}
+@keyframes aCtaPulse {
+0%,
+60%,
+100% {
+transform: scale(1);
+}
+14% {
+transform: scale(1.035);
+}
+30% {
+transform: scale(0.985);
+}
+45% {
+transform: scale(1.02);
+}
+}
+@keyframes ctaCut {
+to {
+transform: translateY(-50%) rotate(-7deg) scaleX(1);
+}
+}
+@keyframes ctaFreePop {
+0% {
+transform: scale(1);
+text-shadow: none;
+}
+45% {
+transform: scale(1.07);
+text-shadow: 0 0 14px rgba(255, 255, 255, 0.75);
+}
+100% {
+transform: scale(1);
+text-shadow: none;
+}
+}.a-cta-label{
+position: relative;
+z-index: 1;
+flex: 1;
+text-align: left;
+letter-spacing: -0.02em;
+}.a-cta-arrow{
+position: relative;
+z-index: 1;
+display: flex;
+height: 30px;
+width: 30px;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+background: rgba(255, 255, 255, 0.18);
+}.a-cta-arrow svg{
+width: 1rem;
+height: 1rem;
+}.a-cta-sheen{
+pointer-events: none;
+position: absolute;
+inset: 0;
+overflow: hidden;
+border-radius: inherit;
+}.a-cta-sheen::after{
+content: '';
+position: absolute;
+top: -20%;
+left: 0;
+width: 38%;
+height: 140%;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+animation: shineSweep 2.6s ease-in-out 0.6s infinite;
+}.a-section-title{
+margin: 0;
+padding: 1.15rem 0 0.35rem;
+width: 100%;
+text-align: center;
+font-size: clamp(18px, 5.3vw, 24px);
+font-weight: 800;
+line-height: 1.2;
+letter-spacing: -0.03em;
+color: #0f172a;
+}.a-urgency-copy{
+margin: 0 0 1.15rem;
+color: #fff;
+font-size: clamp(15px, 4.2vw, 18px);
+font-weight: 700;
+letter-spacing: -0.02em;
+line-height: 1.3;
+}.lp-badge{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.45rem;
+width: 100%;
+margin: 0;
+padding: 0.5rem 0.6rem;
+border-radius: 999px;
+background: var(--accent-strong, var(--w-accent));
+color: #fff;
+font-size: clamp(12px, 3.6vw, 15px);
+font-weight: 800;
+letter-spacing: 0.005em;
+text-transform: uppercase;
+line-height: 1.15;
+text-align: center;
+text-wrap: balance;
+box-shadow: 0 12px 26px -14px color-mix(in srgb, var(--w-accent) 90%, transparent);
+}.lp-badge .lp-badge-dot{
+width: 7px;
+height: 7px;
+flex-shrink: 0;
+border-radius: 999px;
+background: #fff;
+opacity: 0.9;
+}.a-head{
+position: relative;
+padding: 0.9rem 0.8rem 0.55rem;
+}.a-head::before{
+content: '';
+position: absolute;
+inset: -0.5rem -1rem auto -1rem;
+height: 115%;
+z-index: -1;
+pointer-events: none;
+background: radial-gradient(
+120% 100% at 50% 0%,
+rgba(255, 255, 255, 0.95) 0%,
+rgba(255, 255, 255, 0.55) 45%,
+rgba(255, 255, 255, 0) 78%
+);
+}.a-headline{
+margin: 0.6rem 0 0;
+font-size: clamp(22px, 6.5vw, 32px);
+font-weight: 800;
+line-height: 1.11;
+letter-spacing: -0.042em;
+color: #0b1220;
+text-wrap: balance;
+text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}.a-headline .a-hl{
+color: var(--accent-strong, var(--w-accent));
+padding: 0 0.07em;
+border-radius: 0.14em;
+background-image: linear-gradient(
+to right,
+color-mix(in srgb, var(--accent) 24%, transparent),
+color-mix(in srgb, var(--accent) 10%, transparent)
+);
+background-size: 100% 0.28em;
+background-position: 0 88%;
+text-shadow: none;
+}.a-section-title{
+margin: 0;
+padding: 1.35rem 0 0.75rem;
+font-size: clamp(25px, 7.6vw, 33px);
+font-weight: 800;
+line-height: 1.1;
+letter-spacing: -0.035em;
+}.a-section-title .a-hl{
+background-size: 100% 0.36em;
+}.lp-why{
+list-style: none;
+margin: 0;
+padding: 0;
+display: grid;
+gap: 0.55rem;
+}.lp-why-item{
+position: relative;
+display: flex;
+align-items: flex-start;
+gap: 0.75rem;
+padding: 0.85rem 0.95rem 0.85rem 1.05rem;
+border-radius: 1.15rem;
+background:
+linear-gradient(
+145deg,
+#fff 0%,
+color-mix(in srgb, var(--w-note) 16%, #fff) 100%
+);
+border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+box-shadow:
+0 16px 32px -26px color-mix(in srgb, var(--accent) 85%, transparent),
+0 1px 0 rgba(255, 255, 255, 0.85) inset;
+overflow: hidden;
+}.lp-why-item::before{
+content: '';
+position: absolute;
+left: 0;
+top: 0.55rem;
+bottom: 0.55rem;
+width: 4px;
+border-radius: 0 999px 999px 0;
+background: linear-gradient(
+180deg,
+var(--accent) 0%,
+color-mix(in srgb, var(--w-note) 75%, var(--accent)) 100%
+);
+}.lp-why-ico{
+display: grid;
+place-items: center;
+flex-shrink: 0;
+width: 2.45rem;
+height: 2.45rem;
+border-radius: 0.85rem;
+color: #fff;
+background: linear-gradient(
+145deg,
+var(--accent) 0%,
+color-mix(in srgb, var(--w-note) 65%, var(--accent)) 100%
+);
+box-shadow:
+0 10px 20px -10px color-mix(in srgb, var(--accent) 85%, transparent),
+0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}.lp-why-ico svg{
+width: 1.3rem;
+height: 1.3rem;
+}.lp-why-body{
+min-width: 0;
+text-align: left;
+}.lp-why-title{
+margin: 0 0 0.15rem;
+font-size: 15.5px;
+font-weight: 800;
+line-height: 1.22;
+letter-spacing: -0.02em;
+color: #0f172a;
+}.lp-why-text{
+margin: 0;
+font-size: 13.5px;
+font-weight: 500;
+line-height: 1.42;
+color: #475569;
+}@media (min-width: 700px){.lp-why-title{
+font-size: 16px;
+}.lp-why-text{
+font-size: 14px;
+}}.lp-row{
+display: flex;
+align-items: center;
+width: 100%;
+border-radius: 14px;
+border: 1.5px solid #e2e8f0;
+background: #f8fafc;
+padding: 0 0.9rem;
+margin-bottom: 0.6rem;
+transition: border-color 0.15s ease, background 0.15s ease;
+}.lp-row:focus-within{
+border-color: var(--accent-strong, var(--w-accent));
+background: #fff;
+}.lp-row input{
+width: 100%;
+border: 0;
+outline: none;
+background: transparent;
+padding: 0.95rem 0;
+font-size: 1rem;
+font-weight: 600;
+color: #0f172a;
+}.lp-row input::placeholder{
+color: #94a3b8;
+font-weight: 500;
+}.sr-only{
+position: absolute;
+width: 1px;
+height: 1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+}.a-page{
+position: relative;
+isolation: isolate;
+}.a-page::before{
+content: '';
+position: absolute;
+inset: 0 0 auto 0;
+height: 78vh;
+max-height: 760px;
+z-index: -2;
+pointer-events: none;
+background:
+radial-gradient(42% 32% at 12% 8%, color-mix(in srgb, var(--accent) 42%, transparent) 0%, transparent 70%),
+radial-gradient(46% 34% at 92% 14%, color-mix(in srgb, var(--w-note) 60%, transparent) 0%, transparent 72%),
+radial-gradient(60% 40% at 50% 0%, color-mix(in srgb, var(--accent) 22%, transparent) 0%, transparent 75%);
+opacity: 0.9;
+}.hero::before{
+width: 320px;
+height: 320px;
+background: radial-gradient(
+circle at 50% 45%,
+rgba(255, 255, 255, 0.95) 0%,
+color-mix(in srgb, var(--w-note) 55%, rgba(255, 255, 255, 0)) 55%,
+transparent 72%
+);
+}.hero{
+contain: none !important;
+}.hero-img-wrap,.hero-img-wrap img{
+filter: none !important;
+}.hero .badge,.name-pill{
+background: rgba(255, 255, 255, 0.94);
+border: 1px solid rgba(255, 255, 255, 0.95);
+box-shadow: 0 14px 28px -18px color-mix(in srgb, var(--accent) 85%, transparent);
+}.a-cta{
+background: linear-gradient(
+135deg,
+var(--accent-strong, var(--w-accent)) 0%,
+color-mix(in srgb, var(--w-note) 55%, var(--accent)) 100%
+);
+box-shadow:
+0 22px 38px -20px color-mix(in srgb, var(--accent) 95%, transparent),
+0 1px 0 rgba(255, 255, 255, 0.45) inset;
+}.a-cta-arrow{
+background: rgba(255, 255, 255, 0.22);
+border-radius: 999px;
+padding: 0.3rem;
+}.gift-wrap{
+position: relative;
+z-index: 10;
+margin-top: 1.1rem;
+padding-top: 0.2rem;
+border-radius: 1.75rem 1.75rem 0 0;
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.55) 100%);
+box-shadow: 0 -20px 40px -34px rgba(2, 6, 23, 0.55);
+}.bottom{
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 70%);
+}.a-section-title{
+padding-top: 0.3rem;
+}.hero .badge.left,.hero .badge.right{
+top: 41% !important;
+}.hero .badge,.hero::before{
+animation: none !important;
+}.a-cta.is-pulse{
+animation-iteration-count: 8;
+}.a-cta-sheen::after{
+animation-iteration-count: 6;
+}
+      :root {
+        --page-bg: #F1E7FF;
+        --accent: #8B5CF6;
+        --accent-strong: #8457ea;
+        --note-bg: #C4A6FF;
+        --note-ring: #A855F7;
+        --w-accent: #8B5CF6;
+        --w-note: #C4A6FF;
+        --w-page: #F1E7FF;
+      }
+    </style>
+    <script>window.__UZTURK_LP__ = 'kurs-73'</script>
+  </head>
+  <body data-source="kurs-73" style="background: #F1E7FF">
+    <main class="page a-page">
+      <div class="wrap">
+        <div class="top">
+          <div class="a-head">
+            <span class="lp-badge"><span class="lp-badge-dot"></span>Onlayn turk tili kursi</span>
+            <h1 class="a-headline">O‘zbekistondagi eng ideal <span class="a-hl">“100% sertifikat + AI”</span> online turk tili kursiga yoziling.</h1>
+          </div>
+
+          <div class="hero">
+            <div class="hero-img-wrap">
+              <img
+                src="/kurs/img/webinar-1-studio-566.webp"
+                srcset="/kurs/img/webinar-1-studio-283.webp 283w, /kurs/img/webinar-1-studio-425.webp 425w, /kurs/img/webinar-1-studio-495.webp 495w, /kurs/img/webinar-1-studio-566.webp 566w"
+                sizes="(min-width: 331px) 283px, calc(90vw - 14px)"
+                alt="Iroda Nasriddinova"
+                width="1400"
+                height="1764"
+                fetchpriority="high"
+                loading="eager"
+                decoding="sync"
+                style="aspect-ratio: 1400 / 1764"
+              />
+            </div>
+
+            <div class="badge left d1" style="top: 48%">
+              <span class="badge-icon"
+                ><svg viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4L9 11.6l6.3-6.3a1 1 0 0 1 1.4 0Z"
+                    clip-rule="evenodd"
+                  /></svg
+              ></span>
+              <span class="txt">5000+ o'quvchi</span>
+            </div>
+            <div class="badge right d2" style="top: 48%">
+              <span class="badge-icon"
+                ><svg viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4L9 11.6l6.3-6.3a1 1 0 0 1 1.4 0Z"
+                    clip-rule="evenodd"
+                  /></svg
+              ></span>
+              <span class="txt">6 yillik tajriba</span>
+            </div>
+
+            <div class="hero-fade"></div>
+
+            <div class="hero-cta">
+              <div class="name-stack">
+                <div class="badge badge-c1 d3">
+                  <span class="badge-icon"
+                    ><svg viewBox="0 0 20 20" fill="currentColor">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4L9 11.6l6.3-6.3a1 1 0 0 1 1.4 0Z"
+                        clip-rule="evenodd"
+                      /></svg
+                  ></span>
+                  <span class="txt">C1 daraja</span>
+                </div>
+                <div class="name-pill"><span class="a-name">Iroda Nasriddinova</span></div>
+              </div>
+              <button type="button" class="a-cta is-pulse" data-open-modal>
+                <span class="a-cta-sheen" aria-hidden="true"></span>
+                <span class="a-cta-label">Kursga yozilish</span>
+                <span class="a-cta-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
+                    <path d="M5 12h13M12 5.5 18.5 12 12 18.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="gift-wrap">
+            <h2 class="a-section-title">
+              Nima uchun <span class="a-hl">biz?</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="bottom">
+          <ul class="lp-why">
+            <li class="lp-why-item">
+              <span class="lp-why-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18M8 3v4m8-4v4M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><path d="m9 14 2 2 4-4"/></svg>
+              </span>
+              <div class="lp-why-body">
+                <p class="lp-why-title">Haftada 7 kun 3 ta ustoz bilan dars o‘tamiz</p>
+                <p class="lp-why-text">3 kun IrodaHoca video dars, 3 kun kurator bilan jonli dars va yakshanba suhbat darsi. Takrorlashga ko‘proq vaqt qoladi.</p>
+              </div>
+            </li>
+            <li class="lp-why-item">
+              <span class="lp-why-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z"/><path d="M16 5h3v2a3 3 0 0 1-3 3M8 5H5v2a3 3 0 0 0 3 3"/><path d="M12 13v4m-3 3h6"/></svg>
+              </span>
+              <div class="lp-why-body">
+                <p class="lp-why-title">Zo‘r natija qilsangiz pulingizni qaytarib olasiz</p>
+                <p class="lp-why-text">Har darajada 10% chegirma, kursni to‘liq muvaffaqiyatli tugatsangiz 560 000 so‘m imtihon puli, C1 uchun kurs pulining 50% qoplanadi.</p>
+              </div>
+            </li>
+            <li class="lp-why-item">
+              <span class="lp-why-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 16h5"/></svg>
+              </span>
+              <div class="lp-why-body">
+                <p class="lp-why-title">Nazoratchi + Yordamchi AI ni biriktiramiz</p>
+                <p class="lp-why-text">Davomatingizni nazorat qiladi, uy vazifangizni tekshiradi va savollaringizga 24/7 ustozdek javob beradi.</p>
+              </div>
+            </li>
+            <li class="lp-why-item">
+              <span class="lp-why-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 4 3 7 7 8 4-1 7-4 7-8V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              <div class="lp-why-body">
+                <p class="lp-why-title">Kursimizga 100% kafolat beramiz</p>
+                <p class="lp-why-text">Kursni shartlar asosida to‘liq tugatib ham natijaga erisha olmasangiz, to‘lagan pulingiz to‘liq qaytariladi.</p>
+              </div>
+            </li>
+            <li class="lp-why-item">
+              <span class="lp-why-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="18.5" cy="18" r="2.5"/></svg>
+              </span>
+              <div class="lp-why-body">
+                <p class="lp-why-title">Kuchli tizim va o‘quv reja asosida o‘qitamiz</p>
+                <p class="lp-why-text">40 darslik o‘quv reja A1 dan B2 gacha olib boradi. ERP tizimi va adminlar har kuni kuzatib boradi.</p>
+              </div>
+            </li>
+            <li class="lp-why-item">
+              <span class="lp-why-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1"/><circle cx="9.5" cy="7" r="3.5"/><path d="M17 11a3 3 0 1 0 0-6M21 19v-1a3.5 3.5 0 0 0-2.5-3.3"/></svg>
+              </span>
+              <div class="lp-why-body">
+                <p class="lp-why-title">Tajribali va qattiqqo‘l ustozlar dars o‘tishadi</p>
+                <p class="lp-why-text">C1 darajali, 6 yillik tajribaga ega jamoa. Uy vazifangiz 100% tekshiriladi, orqada qolsangiz quvib yuradi.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="urgency">
+            <div class="urgency-pill">
+              <span class="live-dot"></span>
+              Guruhlarda joylar cheklangan
+            </div>
+            <p class="a-urgency-copy">
+              Raqamingizni qoldiring — menejerimiz qo'ng'iroq qilib, tarif va
+              to'lov shartlarini tushuntiradi.
+            </p>
+            <button type="button" class="a-cta" data-open-modal>
+              <span class="a-cta-sheen" aria-hidden="true"></span>
+              <span class="a-cta-label">Kursga yozilish</span>
+              <span class="a-cta-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
+                  <path d="M5 12h13M12 5.5 18.5 12 12 18.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div
+      id="reg-modal"
+      class="modal"
+      hidden
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="reg-title"
+    >
+      <div class="modal-card" onclick="event.stopPropagation()">
+        <div class="modal-bar"></div>
+        <div class="modal-body">
+          <div class="modal-head">
+            <div>
+              <h2 id="reg-title">Kursga yozilish</h2>
+              <p>Ism va raqamingizni qoldiring, biz bog'lanamiz</p>
+            </div>
+            <button
+              type="button"
+              class="modal-close"
+              data-close-modal
+              aria-label="Yopish"
+            >
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <form id="reg-form" novalidate>
+            <label class="sr-only" for="reg-name">Ismingiz</label>
+            <div class="lp-row">
+              <input
+                id="reg-name"
+                name="name"
+                type="text"
+                autocomplete="given-name"
+                placeholder="Ismingiz"
+                required
+              />
+            </div>
+            <label class="sr-only" for="reg-phone">Telefon</label>
+            <div class="phone-row">
+              <span class="phone-prefix">+998</span>
+              <input
+                id="reg-phone"
+                name="phone"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel-national"
+                placeholder="90 123 45 67"
+                maxlength="20"
+                required
+              />
+            </div>
+            <p id="reg-error" class="form-error" hidden></p>
+            <button id="reg-submit" class="submit" type="submit">
+              <span>Yuborish</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>/* Kurs landinglari (/kurs/<slug>) — modal va lead.
+ * Lead oqimi saytdagi boshqa landinglar bilan bir xil:
+ * POST /api/leads -> Bitrix24, Meta "Lead" eventi, so'ng /rahmat/.
+ * kurs-73 va 2613961429062390 build vaqtida almashtiriladi. */
+(function () {
+  'use strict';
+
+  var SOURCE = 'kurs-73';
+  var PIXEL_ID = '2613961429062390';
+
+  function onlyDigits(v) {
+    return String(v || '').replace(/\D/g, '');
+  }
+
+  function formatPhone(value) {
+    var d = onlyDigits(value); if (d.length > 9 && d.indexOf('998') === 0) d = d.slice(3); d = d.slice(0, 9);
+    var out = d.slice(0, 2);
+    if (d.slice(2, 5)) out += ' ' + d.slice(2, 5);
+    if (d.slice(5, 7)) out += ' ' + d.slice(5, 7);
+    if (d.slice(7, 9)) out += ' ' + d.slice(7, 9);
+    return out;
+  }
+
+  var modal = document.getElementById('reg-modal');
+  var form = document.getElementById('reg-form');
+  var nameInput = document.getElementById('reg-name');
+  var phoneInput = document.getElementById('reg-phone');
+  var errorEl = document.getElementById('reg-error');
+  var submitBtn = document.getElementById('reg-submit');
+
+  function showError(text) {
+    if (!errorEl) return;
+    errorEl.textContent = text;
+    errorEl.hidden = !text;
+  }
+
+  function openModal() {
+    if (!modal) return;
+    /* fbevents.js kech yuklanadi — Lead dan oldin kafolatlab chaqiramiz */
+    if (typeof window.__IRODA_LOAD_FBEVENTS__ === 'function') {
+      window.__IRODA_LOAD_FBEVENTS__();
+    }
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    showError('');
+    setTimeout(function () {
+      if (nameInput) nameInput.focus();
+    }, 50);
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-open-modal]').forEach(function (btn) {
+    btn.addEventListener('click', openModal);
+  });
+
+  /* X tugmasi .modal-card ichida va u event'ni to'xtatadi — shuning uchun
+     tugmaga to'g'ridan-to'g'ri bog'laymiz */
+  document.querySelectorAll('[data-close-modal]').forEach(function (btn) {
+    btn.addEventListener('click', closeModal);
+  });
+
+  if (modal) {
+    /* fon bosilsa ham yopiladi */
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
+  });
+
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function () {
+      phoneInput.value = formatPhone(phoneInput.value);
+    });
+  }
+
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name = (nameInput && nameInput.value ? nameInput.value : '').trim();
+    var digits = onlyDigits(phoneInput && phoneInput.value);
+
+    if (name.length < 2) {
+      showError('Iltimos, ismingizni kiriting.');
+      if (nameInput) nameInput.focus();
+      return;
+    }
+    if (digits.length !== 9) {
+      showError("Iltimos, telefon raqamingizni to'liq kiriting (9 ta raqam).");
+      if (phoneInput) phoneInput.focus();
+      return;
+    }
+
+    showError('');
+    if (submitBtn) submitBtn.disabled = true;
+    var phone = '+998' + digits;
+
+    /* Takroriy ariza: shu brauzerdan shu raqam 7 kun ichida yuborilgan bo'lsa
+       qayta jo'natmaymiz */
+    try {
+      var sent = JSON.parse(localStorage.getItem('uz_lead_sent') || 'null');
+      if (sent && sent.p === phone && Date.now() - sent.t < 7 * 864e5) {
+        window.location.href = '/rahmat/';
+        return;
+      }
+    } catch (err) {}
+
+    var eventId =
+      window.crypto && crypto.randomUUID
+        ? crypto.randomUUID()
+        : 'e-' + Date.now() + '-' + Math.random().toString(16).slice(2);
+
+    /* Javobni kutmaymiz (keepalive) — foydalanuvchi darhol rahmat sahifasiga o'tadi */
+    try {
+      var cookie = function (n) {
+        var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)');
+        return m ? decodeURIComponent(m[1]) : '';
+      };
+      var p = new URLSearchParams(window.location.search);
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          phone: phone,
+          source: SOURCE,
+          event_id: eventId,
+          source_url: window.location.href,
+          fbp: cookie('_fbp'),
+          fbc: cookie('_fbc'),
+          campaign_id: p.get('campaign_id') || p.get('utm_campaign') || '',
+          adset_id: p.get('adset_id') || p.get('utm_term') || '',
+          ad_id: p.get('ad_id') || p.get('utm_content') || '',
+        }),
+        keepalive: true,
+      }).catch(function () {});
+      localStorage.setItem('uz_lead_sent', JSON.stringify({ p: phone, t: Date.now() }));
+    } catch (err) {}
+
+    if (typeof fbq === 'function') {
+      try {
+        fbq('trackSingle', PIXEL_ID, 'Lead', { content_name: SOURCE + '-form' }, { eventID: eventId });
+      } catch (err) {
+        try {
+          fbq('track', 'Lead', { content_name: SOURCE + '-form' }, { eventID: eventId });
+        } catch (err2) {}
+      }
+    }
+
+    window.location.href = '/rahmat/';
+  });
+})();
+</script>
+  </body>
+</html>
