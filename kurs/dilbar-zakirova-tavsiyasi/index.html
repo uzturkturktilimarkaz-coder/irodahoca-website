@@ -125,34 +125,6 @@
     }
   })()
 
-  /* ---- 1) PageView beacon — sahifa ochilishi bilan, 0 ms main thread ---- */
-  ;(function irodaPageViewBeacon() {
-    try {
-      var q = [
-        'id=' + encodeURIComponent(PIXEL_ID),
-        'ev=PageView',
-        'dl=' + encodeURIComponent(location.href),
-        'rl=' + encodeURIComponent(document.referrer || ''),
-        'if=false',
-        'ts=' + Date.now(),
-        'sw=' + (screen && screen.width ? screen.width : 0),
-        'sh=' + (screen && screen.height ? screen.height : 0),
-        'eid=' + encodeURIComponent(pvEventId),
-      ]
-      // fbp/fbc birinchi tomon cookie — facebook.com so'roviga o'zimiz qo'shamiz
-      var fbp = irodaReadCookie('_fbp')
-      if (fbp) q.push('fbp=' + fbp)
-      var fbc = irodaReadCookie('_fbc')
-      if (fbc) q.push('fbc=' + fbc)
-      if (testCode) q.push('test_event_code=' + encodeURIComponent(testCode))
-
-      var px = new Image(1, 1)
-      px.referrerPolicy = 'no-referrer-when-downgrade'
-      px.src = 'https://www.facebook.com/tr/?' + q.join('&')
-      window.__IRODA_PV_BEACON__ = 1
-    } catch (e) {}
-  })()
-
   /* ---- 2) fbq stub — chaqiruvlar navbatga tushadi (PageView bundan tashqari) ---- */
   !(function (f, b, e, v, n, t, s) {
     if (f.fbq) return
@@ -171,37 +143,27 @@
   fbq('init', PIXEL_ID)
   window.__IRODA_PIXEL_INITED__ = PIXEL_ID
 
-  /* ---- 3) fbevents.js — LCP dan keyin (harakat / idle / Lead oldidan) ---- */
-  var fbevScheduled = false
-  function irodaLoadFbevents() {
-    if (fbevScheduled) return
-    fbevScheduled = true
-    var t = document.createElement('script')
-    t.async = true
-    t.src = 'https://connect.facebook.net/en_US/fbevents.js'
-    var s = document.getElementsByTagName('script')[0]
-    if (s && s.parentNode) s.parentNode.insertBefore(t, s)
-    else document.head.appendChild(t)
-  }
-  // app.js modal ochilganda darhol chaqiradi — Lead kafolatlangan
-  window.__IRODA_LOAD_FBEVENTS__ = irodaLoadFbevents
-
-  var IDLE_MS = 8000
-  var events = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'mousemove']
-  function onFirstInteraction() {
-    for (var i = 0; i < events.length; i++) {
-      window.removeEventListener(events[i], onFirstInteraction, true)
+  /* ---- PageView — fbevents.js sahifa ochilishi bilan DARHOL yuklanadi
+     (RAHBAR 2026-11-17 tasdiqlagan). Bitta PageView,
+     server CAPI bilan bir xil event_id — dedup, ikki marta sanalmaydi. ---- */
+  fbq('track', 'PageView', {}, { eventID: pvEventId })
+  // fbevents.js — sahifa ochilib bo'lishi bilan (load) darhol; ko'rinish
+  // tezligiga (LCP) ta'sir qilmaydi. PageView navbatda turadi va shu zahoti ketadi.
+  ;(function () {
+    function go() {
+      var t = document.createElement('script')
+      t.async = true
+      t.src = 'https://connect.facebook.net/en_US/fbevents.js'
+      var s = document.getElementsByTagName('script')[0]
+      if (s && s.parentNode) s.parentNode.insertBefore(t, s)
+      else document.head.appendChild(t)
     }
-    irodaLoadFbevents()
-  }
-  for (var i = 0; i < events.length; i++) {
-    window.addEventListener(events[i], onFirstInteraction, {
-      once: true,
-      passive: true,
-      capture: true,
-    })
-  }
-  setTimeout(irodaLoadFbevents, IDLE_MS)
+    if (document.readyState === 'complete') go()
+    else window.addEventListener('load', go)
+  })()
+  // eski chaqiruvlar uchun (modal ochilganda) — endi hech narsa qilmaydi
+  window.__IRODA_LOAD_FBEVENTS__ = function () {}
+
 })()
 </script>
     <noscript><img height="1" width="1" style="display:none"
@@ -1508,6 +1470,74 @@ animation-iteration-count: 6;
 
     window.location.href = '/rahmat/';
   });
+})();
+</script>
+    <script>/* Voronka (RAHBAR 2026-11-17 tasdiqlagan): kirdi → «Kursga yozilish»
+ * bosildi → ism yozildi → raqam yozildi → yuborildi. Har qadam sahifa
+ * ochilishiga BIR marta. Meta'ga faqat EnrollClick ketadi (custom event),
+ * qolganlari o'zimizning serverda. Ko'rinish o'zgarmaydi. */
+(function () {
+  'use strict';
+  var SOURCE = 'kurs-dilbar-zakirova-tavsiyasi';
+  var CLARITY_ID = '';
+  var sid = '';
+  try { sid = crypto.randomUUID(); } catch (e) {}
+  if (!sid) sid = 's-' + Date.now() + '-' + Math.random().toString(16).slice(2);
+  var q = new URLSearchParams(location.search);
+  var adId = q.get('ad_id') || q.get('utm_content') || '';
+  var done = {};
+  function post(url, obj) {
+    var b = JSON.stringify(obj);
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon(url, new Blob([b], { type: 'application/json' }))) return;
+    } catch (e) {}
+    try { fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: b, keepalive: true }).catch(function () {}); } catch (e) {}
+  }
+  function step(name) {
+    if (done[name]) return;
+    done[name] = 1;
+    post('/api/funnel', { step: name, sid: sid, source: SOURCE, path: location.pathname, ad_id: adId });
+  }
+  function cookie(n) {
+    var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)');
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+  step('view');
+
+  document.querySelectorAll('[data-open-modal]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (done.click) return;
+      step('click');
+      var id = sid + '-enroll';
+      try { if (typeof fbq === 'function') fbq('trackCustom', 'EnrollClick', { content_name: SOURCE }, { eventID: id }); } catch (e) {}
+      post('/api/track', { event_name: 'EnrollClick', event_id: id, source: SOURCE, source_url: location.href, fbp: cookie('_fbp'), fbc: cookie('_fbc') });
+    });
+  });
+  var nameEl = document.getElementById('reg-name');
+  var phoneEl = document.getElementById('reg-phone');
+  function digits() { var d = String(phoneEl && phoneEl.value || '').replace(/\D/g, ''); if (d.length > 9 && d.indexOf('998') === 0) d = d.slice(3); return d; }
+  if (nameEl) nameEl.addEventListener('input', function () { if (nameEl.value.trim().length >= 2) step('name'); });
+  if (phoneEl) phoneEl.addEventListener('input', function () { if (digits().length === 9) step('phone'); });
+  var form = document.getElementById('reg-form');
+  if (form) form.addEventListener('submit', function () {
+    if (nameEl && nameEl.value.trim().length >= 2 && digits().length === 9) step('submit');
+  });
+
+  /* Microsoft Clarity — sahifa to'liq chiqqandan keyin, visit rate'ga ta'sir qilmaydi */
+  if (CLARITY_ID) {
+    var loadClarity = function () {
+      setTimeout(function () {
+        (function (c, l, a, r, i, t, y) {
+          c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+          t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+          y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, 'clarity', 'script', CLARITY_ID);
+        try { window.clarity('set', 'source', SOURCE); } catch (e) {}
+      }, 1500);
+    };
+    if (document.readyState === 'complete') loadClarity();
+    else window.addEventListener('load', loadClarity);
+  }
 })();
 </script>
   </body>
