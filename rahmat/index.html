@@ -28,21 +28,8 @@ s.parentNode.insertBefore(t,s);
 fbq('set', 'autoConfig', false, '2613961429062390');
 fbq('init', '2613961429062390');
 var __pvId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('pv-' + Date.now() + '-' + Math.random().toString(16).slice(2));
-/* CompleteRegistration faqat yangi yuborilgan arizadan keyin, bitta ariza
-   uchun BIR marta (2026-11-17). Ilgari sahifa har ochilganda (yangilash,
-   orqaga qaytish, takroriy ariza) yuborilardi va Ads Manager'da
-   "registratsiya" lidlardan ko'p (117-200%) chiqardi. */
-var __crId = '';
-try {
-  var __ls = JSON.parse(localStorage.getItem('uz_lead_sent') || 'null');
-  if (__ls && __ls.t && !__ls.cr && Date.now() - __ls.t < 30 * 60 * 1000) {
-    __crId = 'cr-' + String(__ls.p || '').replace(/\D/g, '') + '-' + __ls.t;
-    __ls.cr = 1;
-    localStorage.setItem('uz_lead_sent', JSON.stringify(__ls));
-  }
-} catch (e) { __crId = ''; }
+var __crId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('cr-' + Date.now() + '-' + Math.random().toString(16).slice(2));
 fbq('track', 'PageView', {}, { eventID: __pvId });
-if (__crId) fbq('track', 'CompleteRegistration', {}, { eventID: __crId });
 try {
   var __m = document.cookie.match(/(?:^|; )_fbp=([^;]*)/);
   var __fbp = __m ? decodeURIComponent(__m[1]) : '';
@@ -54,7 +41,6 @@ try {
     else { fetch('/api/track', { method: 'POST', headers: {'Content-Type':'application/json'}, body: payload, keepalive: true }); }
   };
   __send('PageView', __pvId);
-  if (__crId) __send('CompleteRegistration', __crId);
 } catch (e) {}
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -264,6 +250,35 @@ body{justify-content:flex-start;padding:16px 16px 28px}
 // Saytda qoldirilgan raqam botga uzatiladi (start=sayt_998XXXXXXXXX): bot shu
 // raqam bo'yicha Bitrixdagi lidni topib, Telegram chatni unga bog'laydi va
 // ism/raqamni qayta so'ramaydi (2026-11-04).
+// CompleteRegistration — sahifa ochilishida emas, Telegram tugmasi bosilganda
+// (pixel va CAPI bitta event_id bilan, shuning uchun dedup ishlaydi).
+// 2026-11-17: bitta ariza uchun faqat BIR marta. Ilgari har sahifa
+// ochilishida yangi event_id bo'lardi: sahifani qayta ochib tugmani yana
+// bossa yoki takroriy ariza (Lead yuborilmaydi) bilan kelsa ham qayta
+// sanalardi va Ads Manager'da registratsiya lidlardan ko'p (117-200%)
+// chiqardi. Endi event_id arizaning o'zidan olinadi (raqam + vaqt) va
+// arizasi yo'q brauzer registratsiya sifatida sanalmaydi.
+(function(){
+  var fired = false;
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('#tg-cta, .card__tg') : null;
+    if (!btn || fired) return;
+    fired = true;
+    var id = '';
+    try {
+      var s = JSON.parse(localStorage.getItem('uz_lead_sent') || 'null');
+      if (s && s.t && !s.cr && Date.now() - s.t < 7 * 864e5) {
+        id = 'cr-' + String(s.p || '').replace(/\D/g, '') + '-' + s.t;
+        s.cr = 1;
+        localStorage.setItem('uz_lead_sent', JSON.stringify(s));
+      }
+    } catch (err) { id = ''; }
+    if (!id) return;
+    try { if (typeof fbq === 'function') fbq('track', 'CompleteRegistration', {}, { eventID: id }); } catch (err) {}
+    try { if (typeof __send === 'function') __send('CompleteRegistration', id); } catch (err) {}
+  }, true);
+})();
+
 (function(){
   try {
     var s = JSON.parse(localStorage.getItem('uz_lead_sent') || 'null');
