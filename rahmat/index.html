@@ -28,9 +28,21 @@ s.parentNode.insertBefore(t,s);
 fbq('set', 'autoConfig', false, '2613961429062390');
 fbq('init', '2613961429062390');
 var __pvId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('pv-' + Date.now() + '-' + Math.random().toString(16).slice(2));
-var __crId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ('cr-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+/* CompleteRegistration faqat yangi yuborilgan arizadan keyin, bitta ariza
+   uchun BIR marta (2026-11-17). Ilgari sahifa har ochilganda (yangilash,
+   orqaga qaytish, takroriy ariza) yuborilardi va Ads Manager'da
+   "registratsiya" lidlardan ko'p (117-200%) chiqardi. */
+var __crId = '';
+try {
+  var __ls = JSON.parse(localStorage.getItem('uz_lead_sent') || 'null');
+  if (__ls && __ls.t && !__ls.cr && Date.now() - __ls.t < 30 * 60 * 1000) {
+    __crId = 'cr-' + String(__ls.p || '').replace(/\D/g, '') + '-' + __ls.t;
+    __ls.cr = 1;
+    localStorage.setItem('uz_lead_sent', JSON.stringify(__ls));
+  }
+} catch (e) { __crId = ''; }
 fbq('track', 'PageView', {}, { eventID: __pvId });
-fbq('track', 'CompleteRegistration', {}, { eventID: __crId });
+if (__crId) fbq('track', 'CompleteRegistration', {}, { eventID: __crId });
 try {
   var __m = document.cookie.match(/(?:^|; )_fbp=([^;]*)/);
   var __fbp = __m ? decodeURIComponent(__m[1]) : '';
@@ -42,7 +54,7 @@ try {
     else { fetch('/api/track', { method: 'POST', headers: {'Content-Type':'application/json'}, body: payload, keepalive: true }); }
   };
   __send('PageView', __pvId);
-  __send('CompleteRegistration', __crId);
+  if (__crId) __send('CompleteRegistration', __crId);
 } catch (e) {}
 </script>
 <noscript><img height="1" width="1" style="display:none"
