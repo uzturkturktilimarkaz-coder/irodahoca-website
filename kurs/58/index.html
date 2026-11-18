@@ -16,9 +16,7 @@
       imagesizes="(min-width: 353px) 303px, calc(90vw - 14px)"
       fetchpriority="high"
     />
-    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
     <link rel="preconnect" href="https://www.facebook.com" />
-    <link rel="dns-prefetch" href="https://connect.facebook.net" />
     <!-- Meta Pixel -->
     <script>/**
  * Meta Pixel bootstrap — static webinar sahifalari uchun (template.html + template-b.html).
@@ -172,43 +170,35 @@
   window.__IRODA_PIXEL_INITED__ = PIXEL_ID
 
   /* ---- 3) fbevents.js — LCP dan keyin (harakat / idle / Lead oldidan) ---- */
-  var fbevScheduled = false
-  function irodaLoadFbevents() {
-    if (fbevScheduled) return
-    fbevScheduled = true
-    var t = document.createElement('script')
-    t.async = true
-    t.src = 'https://connect.facebook.net/en_US/fbevents.js'
-    var s = document.getElementsByTagName('script')[0]
-    if (s && s.parentNode) s.parentNode.insertBefore(t, s)
-    else document.head.appendChild(t)
+  /* ---- 3) fbevents.js YUKLANMAYDI (RAHBAR 2026-11-18: sayt juda yengil bo'lsin).
+     Barcha eventlar (Lead, EnrollClick) Facebook'ga to'g'ridan-to'g'ri yengil
+     signal bilan ketadi + serverdan (CAPI) xuddi shu event_id bilan — dedup. ---- */
+  function irodaSend(ev, custom, eid) {
+    try {
+      var q = ['id=' + encodeURIComponent(PIXEL_ID), 'ev=' + encodeURIComponent(ev),
+        'dl=' + encodeURIComponent(location.href), 'rl=' + encodeURIComponent(document.referrer || ''),
+        'if=false', 'ts=' + Date.now()]
+      if (eid) q.push('eid=' + encodeURIComponent(eid))
+      var fbp = irodaReadCookie('_fbp'); if (fbp) q.push('fbp=' + fbp)
+      var fbc = irodaReadCookie('_fbc'); if (fbc) q.push('fbc=' + fbc)
+      if (testCode) q.push('test_event_code=' + encodeURIComponent(testCode))
+      for (var k in custom || {}) q.push('cd[' + encodeURIComponent(k) + ']=' + encodeURIComponent(custom[k]))
+      var url = 'https://www.facebook.com/tr/?' + q.join('&')
+      if (navigator.sendBeacon && navigator.sendBeacon(url)) return
+      var px = new Image(1, 1); px.referrerPolicy = 'no-referrer-when-downgrade'; px.src = url
+    } catch (e) {}
   }
-  // app.js modal ochilganda darhol chaqiradi — Lead kafolatlangan
-  window.__IRODA_LOAD_FBEVENTS__ = irodaLoadFbevents
-
-  var events = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'mousemove']
-  function onFirstInteraction() {
-    for (var i = 0; i < events.length; i++) {
-      window.removeEventListener(events[i], onFirstInteraction, true)
-    }
-    irodaLoadFbevents()
+  function irodaFbq(args) {
+    var m = args[0], a = Array.prototype.slice.call(args, 1)
+    if (m === 'trackSingle') a = a.slice(1)
+    if (m !== 'track' && m !== 'trackSingle' && m !== 'trackCustom') return
+    if (a[0] === 'PageView') return // beacon allaqachon yuborgan
+    irodaSend(a[0], a[1], a[2] && a[2].eventID)
   }
-  for (var i = 0; i < events.length; i++) {
-    window.addEventListener(events[i], onFirstInteraction, {
-      once: true,
-      passive: true,
-      capture: true,
-    })
-  }
-  // fbevents.js: sahifa to'liq chiqib bo'lgach (load + bo'sh vaqt, ko'pi bilan 2.5s),
-  // yoki birinchi harakatda. PageView yuqoridagi beacon bilan DARHOL ketgan.
-  // (RAHBAR 2026-11-17: tezlik testi 99 → 60 ga tushgani uchun shunday qilindi.)
-  function irodaIdleLoad() {
-    if (window.requestIdleCallback) requestIdleCallback(irodaLoadFbevents, { timeout: 2500 })
-    else setTimeout(irodaLoadFbevents, 1500)
-  }
-  if (document.readyState === 'complete') irodaIdleLoad()
-  else window.addEventListener('load', irodaIdleLoad)
+  window.fbq.callMethod = function () { irodaFbq(arguments) }
+  var _q = window.fbq.queue || []; window.fbq.queue = []
+  for (var qi = 0; qi < _q.length; qi++) irodaFbq(_q[qi])
+  window.__IRODA_LOAD_FBEVENTS__ = function () {}
 
 })()
 </script>
