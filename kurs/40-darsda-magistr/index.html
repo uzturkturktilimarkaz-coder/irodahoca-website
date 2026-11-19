@@ -1150,26 +1150,18 @@ animation-iteration-count: 6;
 
           <div class="hero">
             <div class="hero-img-wrap">
-              <img
-                src="/kurs/img/webinar-3-mantiya-584.webp"
-                srcset="/kurs/img/webinar-3-mantiya-292.webp 292w, /kurs/img/webinar-3-mantiya-438.webp 438w, /kurs/img/webinar-3-mantiya-511.webp 511w, /kurs/img/webinar-3-mantiya-584.webp 584w"
-                sizes="(min-width: 341px) 292px, calc(90vw - 14px)"
-                alt="Iroda Nasriddinova"
-                width="1400"
-                height="1705"
-                fetchpriority="high"
-                loading="eager"
-                decoding="sync"
-                style="aspect-ratio: 1400 / 1705"
-              />
-              <script>(function () {
-                if (window.__AB__ !== 'B') return
-                var i = document.currentScript.previousElementSibling
-                i.setAttribute('sizes', '(min-width: 308px) 262px, calc(90vw - 14px)')
-                i.setAttribute('srcset', '/kurs/img/studio-oq-kuylak-262.webp 262w, /kurs/img/studio-oq-kuylak-393.webp 393w, /kurs/img/studio-oq-kuylak-459.webp 459w, /kurs/img/studio-oq-kuylak-524.webp 524w')
-                i.src = '/kurs/img/studio-oq-kuylak-524.webp'
-                i.height = 1903; i.style.aspectRatio = '1400 / 1903'
-              })()</script>
+              <script>/* A/B: faqat tanlangan variantning rasmi yuklanadi (ikkinchisi emas) */
+(function () {
+  var B = window.__AB__ === 'B'
+  var base = B ? '/kurs/img/studio-oq-kuylak-' : '/kurs/img/webinar-3-mantiya-'
+  var w = B ? [262, 393, 459, 524] : [292, 438, 511, 584]
+  var h = B ? 1903 : 1705
+  var sizes = B ? '(min-width: 308px) 262px, calc(90vw - 14px)' : '(min-width: 341px) 292px, calc(90vw - 14px)'
+  var set = w.map(function (x) { return base + x + '.webp ' + x + 'w' }).join(', ')
+  document.write('<img src="' + base + w[3] + '.webp" srcset="' + set + '" sizes="' + sizes +
+    '" alt="Iroda Nasriddinova" width="1400" height="' + h + '" fetchpriority="high" loading="eager" decoding="sync" style="aspect-ratio: 1400 / ' + h + '" />')
+})()</script>
+              <noscript><img src="/kurs/img/webinar-3-mantiya-584.webp" alt="Iroda Nasriddinova" width="1400" height="1705" style="aspect-ratio: 1400 / 1705" /></noscript>
             </div>
 
             <div class="badge left d1" style="top: 48%">
