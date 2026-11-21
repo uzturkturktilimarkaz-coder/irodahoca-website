@@ -1115,7 +1115,9 @@ animation-iteration-count: 6;
       }
     </style>
     <script>window.__UZTURK_LP__ = 'kurs-eng-ideal-sertifikat-ai-kursi'</script>
-  </head>
+  <script>/* A/B (RAHBAR 2026-11-21): C = raqamni tasdiqlash oynasi, N = odatdagidek */
+(function(){var v='';try{v=localStorage.getItem('ab_cf')||''}catch(e){}if(v!=='C'&&v!=='N'){v=Math.random()<0.5?'C':'N';try{localStorage.setItem('ab_cf',v)}catch(e){}}window.__CF__=v})()</script>
+</head>
   <body data-source="kurs-eng-ideal-sertifikat-ai-kursi" style="background: #F1E7FF">
     <main class="page a-page">
       <div class="wrap">
@@ -1360,11 +1362,12 @@ animation-iteration-count: 6;
   }
 
   function formatPhone(value) {
-    var d = onlyDigits(value); if (d.length > 9 && d.indexOf('998') === 0) d = d.slice(3); d = d.slice(0, 9);
+    var d = onlyDigits(value); if (d.length === 12 && d.indexOf('998') === 0) d = d.slice(3); d = d.slice(0, 12); /* kesib tashlamaymiz — ortiqcha raqam xato bo'lib chiqadi */
     var out = d.slice(0, 2);
     if (d.slice(2, 5)) out += ' ' + d.slice(2, 5);
     if (d.slice(5, 7)) out += ' ' + d.slice(5, 7);
     if (d.slice(7, 9)) out += ' ' + d.slice(7, 9);
+    if (d.slice(9)) out += ' ' + d.slice(9);
     return out;
   }
 
@@ -1437,10 +1440,16 @@ animation-iteration-count: 6;
 
     var name = (nameInput && nameInput.value ? nameInput.value : '').trim();
     var digits = onlyDigits(phoneInput && phoneInput.value);
+    if (digits.length === 12 && digits.indexOf('998') === 0) digits = digits.slice(3);
 
     if (name.length < 2) {
       showError('Iltimos, ismingizni kiriting.');
       if (nameInput) nameInput.focus();
+      return;
+    }
+    if (digits.length > 9) {
+      showError('Raqamda ortiqcha raqam bor. 9 ta raqam yozing: 90 123 45 67');
+      if (phoneInput) phoneInput.focus();
       return;
     }
     if (digits.length !== 9) {
@@ -1455,6 +1464,30 @@ animation-iteration-count: 6;
     }
 
     showError('');
+    if (window.__CF__ === 'C' && !form.__cfOk) {
+      window.__CF_PENDING__ = true;
+      var f = digits.slice(0, 2) + ' ' + digits.slice(2, 5) + ' ' + digits.slice(5, 7) + ' ' + digits.slice(7, 9);
+      var box = document.getElementById('cf-box');
+      if (!box) {
+        box = document.createElement('div'); box.id = 'cf-box'; box.style.cssText = 'text-align:center;padding:6px 0';
+        box.innerHTML = '<p style="margin:0 0 6px;font:600 15px system-ui,sans-serif;color:#475569">Raqamingiz to\u2018g\u2018rimi?</p>' +
+          '<p id="cf-num" style="margin:0 0 16px;font:800 26px system-ui,sans-serif;color:#0f172a"></p>' +
+          '<button type="button" id="cf-yes" style="width:100%;border:0;border-radius:14px;padding:15px;font:800 17px system-ui,sans-serif;color:#fff;background:#16a34a;box-shadow:0 8px 20px rgba(22,163,74,.35)">\u2713 Ha, to\u2018g\u2018ri \u2014 yuborish</button>' +
+          '<button type="button" id="cf-fix" style="margin-top:10px;width:100%;border:1.5px solid #cbd5e1;border-radius:14px;padding:12px;font:700 15px system-ui,sans-serif;color:#334155;background:#fff">\u270E Raqamni tuzatish</button>';
+        form.parentNode.appendChild(box);
+        document.getElementById('cf-yes').addEventListener('click', function () {
+          form.__cfOk = true; window.__CF_PENDING__ = false;
+          if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', { cancelable: true }));
+        });
+        document.getElementById('cf-fix').addEventListener('click', function () {
+          box.style.display = 'none'; form.style.display = ''; window.__CF_PENDING__ = false;
+          if (phoneInput) phoneInput.focus();
+        });
+      }
+      document.getElementById('cf-num').textContent = '+998 ' + f;
+      form.style.display = 'none'; box.style.display = '';
+      return;
+    }
     if (submitBtn) submitBtn.disabled = true;
     var phone = '+998' + digits;
 
@@ -1520,7 +1553,7 @@ animation-iteration-count: 6;
  * qolganlari o'zimizning serverda. Ko'rinish o'zgarmaydi. */
 (function () {
   'use strict';
-  var SOURCE = 'kurs-eng-ideal-sertifikat-ai-kursi';
+  var SOURCE = 'kurs-eng-ideal-sertifikat-ai-kursi:cf' + (window.__CF__ || 'N');
   var CLARITY_ID = '';
   var sid = '';
   try { sid = crypto.randomUUID(); } catch (e) {}
@@ -1562,7 +1595,12 @@ animation-iteration-count: 6;
   if (phoneEl) phoneEl.addEventListener('input', function () { if (digits().length === 9) step('phone'); });
   var form = document.getElementById('reg-form');
   if (form) form.addEventListener('submit', function () {
-    if (nameEl && nameEl.value.trim().length >= 2 && digits().length === 9) step('submit');
+    if (window.__CF_PENDING__) return;
+    var d = digits();
+    if (nameEl && nameEl.value.trim().length >= 2 && d.length === 9 && !done.submit) {
+      done.submit = 1;
+      post('/api/funnel', { step: 'submit', sid: sid, source: SOURCE, path: location.pathname, ad_id: adId, phone: '+998' + d });
+    }
   });
 
   /* Microsoft Clarity — sahifa to'liq chiqqandan keyin, visit rate'ga ta'sir qilmaydi */

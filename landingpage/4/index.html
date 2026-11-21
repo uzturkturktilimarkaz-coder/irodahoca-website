@@ -537,7 +537,7 @@ var leadForm = document.getElementById('leadForm');
 if (leadForm) {
   var phoneDigitsEl = document.getElementById('leadPhone');
   phoneDigitsEl.addEventListener('input', function(){
-    var __pd = phoneDigitsEl.value.replace(/\D/g, ''); if (__pd.length > 9 && __pd.indexOf('998') === 0) __pd = __pd.slice(3); phoneDigitsEl.value = __pd.slice(0, 9);
+    var __pd = phoneDigitsEl.value.replace(/\D/g, ''); if (__pd.length === 12 && __pd.indexOf('998') === 0) __pd = __pd.slice(3); phoneDigitsEl.value = __pd.slice(0, 12);
   });
 
   leadForm.addEventListener('submit', function(e){
@@ -555,6 +555,12 @@ if (leadForm) {
       msgEl.textContent = 'Iltimos, ism familiyangizni kiriting.';
       msgEl.className = 'msg msg--err';
       nameEl.focus();
+      return;
+    }
+    if (phoneDigits.length > 9) {
+      msgEl.textContent = 'Raqamda ortiqcha raqam bor. 9 ta raqam yozing: 90 123 45 67';
+      msgEl.className = 'msg msg--err';
+      phoneDigitsEl.focus();
       return;
     }
     if (phoneDigits.length !== 9) {

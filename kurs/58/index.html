@@ -1360,11 +1360,12 @@ animation-iteration-count: 6;
   }
 
   function formatPhone(value) {
-    var d = onlyDigits(value); if (d.length > 9 && d.indexOf('998') === 0) d = d.slice(3); d = d.slice(0, 9);
+    var d = onlyDigits(value); if (d.length === 12 && d.indexOf('998') === 0) d = d.slice(3); d = d.slice(0, 12); /* kesib tashlamaymiz — ortiqcha raqam xato bo'lib chiqadi */
     var out = d.slice(0, 2);
     if (d.slice(2, 5)) out += ' ' + d.slice(2, 5);
     if (d.slice(5, 7)) out += ' ' + d.slice(5, 7);
     if (d.slice(7, 9)) out += ' ' + d.slice(7, 9);
+    if (d.slice(9)) out += ' ' + d.slice(9);
     return out;
   }
 
@@ -1437,10 +1438,16 @@ animation-iteration-count: 6;
 
     var name = (nameInput && nameInput.value ? nameInput.value : '').trim();
     var digits = onlyDigits(phoneInput && phoneInput.value);
+    if (digits.length === 12 && digits.indexOf('998') === 0) digits = digits.slice(3);
 
     if (name.length < 2) {
       showError('Iltimos, ismingizni kiriting.');
       if (nameInput) nameInput.focus();
+      return;
+    }
+    if (digits.length > 9) {
+      showError('Raqamda ortiqcha raqam bor. 9 ta raqam yozing: 90 123 45 67');
+      if (phoneInput) phoneInput.focus();
       return;
     }
     if (digits.length !== 9) {
