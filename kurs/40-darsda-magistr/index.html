@@ -7,27 +7,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <!-- LCP rasm/shrift — pixel scriptidan OLDIN -->
-    <script>/* A/B sinov (RAHBAR 2026-11-18): A = yashil + mantiya, B = ko'k + studiya rasmi.
-   Har tashrif buyuruvchi bitta variantni ko'radi (qaytsa ham o'sha). */
-(function () {
-  var v = ''
-  try { v = localStorage.getItem('ab_40m') || '' } catch (e) {}
-  if (v !== 'A' && v !== 'B') { v = Math.random() < 0.5 ? 'A' : 'B'; try { localStorage.setItem('ab_40m', v) } catch (e) {} }
-  window.__AB__ = v
-  document.documentElement.setAttribute('data-ab', v)
-  var l = document.createElement('link')
-  l.rel = 'preload'; l.as = 'image'; l.type = 'image/webp'; l.setAttribute('fetchpriority', 'high')
-  if (v === 'B') {
-    l.href = '/kurs/img/studio-oq-kuylak-524.webp'
-    l.setAttribute('imagesrcset', '/kurs/img/studio-oq-kuylak-262.webp 262w, /kurs/img/studio-oq-kuylak-393.webp 393w, /kurs/img/studio-oq-kuylak-459.webp 459w, /kurs/img/studio-oq-kuylak-524.webp 524w')
-    l.setAttribute('imagesizes', '(min-width: 308px) 262px, calc(90vw - 14px)')
-  } else {
-    l.href = '/kurs/img/webinar-3-mantiya-584.webp'
-    l.setAttribute('imagesrcset', '/kurs/img/webinar-3-mantiya-292.webp 292w, /kurs/img/webinar-3-mantiya-438.webp 438w, /kurs/img/webinar-3-mantiya-511.webp 511w, /kurs/img/webinar-3-mantiya-584.webp 584w')
-    l.setAttribute('imagesizes', '(min-width: 341px) 292px, calc(90vw - 14px)')
-  }
-  document.head.appendChild(l)
-})()</script>
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/kurs/img/webinar-3-mantiya-584.webp"
+      imagesrcset="/kurs/img/webinar-3-mantiya-292.webp 292w, /kurs/img/webinar-3-mantiya-438.webp 438w, /kurs/img/webinar-3-mantiya-511.webp 511w, /kurs/img/webinar-3-mantiya-584.webp 584w"
+      imagesizes="(min-width: 341px) 292px, calc(90vw - 14px)"
+      fetchpriority="high"
+    />
     <link rel="preconnect" href="https://www.facebook.com" />
     <!-- Meta Pixel -->
     <script>/**
@@ -1125,17 +1113,6 @@ animation-iteration-count: 6;
         --w-note: #C8E88A;
         --w-page: #EDF7D4;
       }
-      html[data-ab="B"] {
-        --page-bg: #E5EAFF;
-        --accent: #4F6BFF;
-        --accent-strong: #4c67f5;
-        --note-bg: #A5B4FC;
-        --note-ring: #818CF8;
-        --w-accent: #4F6BFF;
-        --w-note: #A5B4FC;
-        --w-page: #E5EAFF;
-      }
-      html[data-ab="B"] body { background: #E5EAFF !important; }
     </style>
     <script>window.__UZTURK_LP__ = 'kurs-40-darsda-magistr'</script>
   </head>
@@ -1145,23 +1122,23 @@ animation-iteration-count: 6;
         <div class="top">
           <div class="a-head">
             <span class="lp-badge"><span class="lp-badge-dot"></span>3 oylik online turk tili kursi</span>
-            <h1 class="a-headline">Turk tili sertifikati orqali atigi 40 darsda sertifikatli bo‘lib <span class="a-hl">magistr bo‘ling</span>.</h1>
+            <h1 class="a-headline">Turk tili sertifikati magistraturaga <span class="a-hl">100% qabul qilinadi</span> — 0 dan boshlab atigi 3&nbsp;oyda sertifikat oling.</h1>
           </div>
 
           <div class="hero">
             <div class="hero-img-wrap">
-              <script>/* A/B: faqat tanlangan variantning rasmi yuklanadi (ikkinchisi emas) */
-(function () {
-  var B = window.__AB__ === 'B'
-  var base = B ? '/kurs/img/studio-oq-kuylak-' : '/kurs/img/webinar-3-mantiya-'
-  var w = B ? [262, 393, 459, 524] : [292, 438, 511, 584]
-  var h = B ? 1903 : 1705
-  var sizes = B ? '(min-width: 308px) 262px, calc(90vw - 14px)' : '(min-width: 341px) 292px, calc(90vw - 14px)'
-  var set = w.map(function (x) { return base + x + '.webp ' + x + 'w' }).join(', ')
-  document.write('<img src="' + base + w[3] + '.webp" srcset="' + set + '" sizes="' + sizes +
-    '" alt="Iroda Nasriddinova" width="1400" height="' + h + '" fetchpriority="high" loading="eager" decoding="sync" style="aspect-ratio: 1400 / ' + h + '" />')
-})()</script>
-              <noscript><img src="/kurs/img/webinar-3-mantiya-584.webp" alt="Iroda Nasriddinova" width="1400" height="1705" style="aspect-ratio: 1400 / 1705" /></noscript>
+              <img
+                src="/kurs/img/webinar-3-mantiya-584.webp"
+                srcset="/kurs/img/webinar-3-mantiya-292.webp 292w, /kurs/img/webinar-3-mantiya-438.webp 438w, /kurs/img/webinar-3-mantiya-511.webp 511w, /kurs/img/webinar-3-mantiya-584.webp 584w"
+                sizes="(min-width: 341px) 292px, calc(90vw - 14px)"
+                alt="Iroda Nasriddinova"
+                width="1400"
+                height="1705"
+                fetchpriority="high"
+                loading="eager"
+                decoding="sync"
+                style="aspect-ratio: 1400 / 1705"
+              />
             </div>
 
             <div class="badge left d1" style="top: 48%">
@@ -1537,7 +1514,7 @@ animation-iteration-count: 6;
  * qolganlari o'zimizning serverda. Ko'rinish o'zgarmaydi. */
 (function () {
   'use strict';
-  var SOURCE = 'kurs-40-darsda-magistr:' + (window.__AB__ || 'A');
+  var SOURCE = 'kurs-40-darsda-magistr';
   var CLARITY_ID = '';
   var sid = '';
   try { sid = crypto.randomUUID(); } catch (e) {}
